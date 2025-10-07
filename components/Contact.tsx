@@ -22,7 +22,7 @@ export default function Contact() {
           <div>
             <p className="text-white/60 text-lg mb-4">Contact</p>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-normal text-white mb-8 max-w-4xl mx-auto leading-tight">
-              Let's explore new horizons together
+              Let&apos;s explore new horizons together
             </h2>
           </div>
 

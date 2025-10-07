@@ -32,13 +32,13 @@ export default function AboutMe() {
             <div>
               <h2 className="text-5xl font-normal text-white mb-6">About Me</h2>
               <p className="text-xl text-white/70 leading-relaxed mb-6">
-                I'm a product designer based in Berlin, blending design and management
+                I&apos;m a product designer based in Berlin, blending design and management
                 to craft solutions that drive real results. With over 8 years of experience in
                 B2B SaaS and enterprise products, I specialize in creating intuitive,
                 user-centered experiences that solve complex problems.
               </p>
               <p className="text-xl text-white/70 leading-relaxed">
-                I've had the privilege of working with companies across 60+ countries,
+                I&apos;ve had the privilege of working with companies across 60+ countries,
                 leading design teams, and mentoring emerging designers to achieve
                 exceptional results.
               </p>

@@ -208,8 +208,8 @@ export default function YaraPlusCase() {
           </p>
           <div className="bg-white/5 rounded-2xl p-8 border border-white/10">
             <blockquote className="text-2xl text-white/90 italic">
-              "The YaraPlus platform transformed how we approach crop nutrition. The
-              interface is incredibly intuitive, and the insights are invaluable."
+              &ldquo;The YaraPlus platform transformed how we approach crop nutrition. The
+              interface is incredibly intuitive, and the insights are invaluable.&rdquo;
             </blockquote>
             <p className="text-white/60 mt-4">— Agricultural Professional, Netherlands</p>
           </div>

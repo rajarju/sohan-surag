@@ -76,7 +76,7 @@ export default function References() {
               {/* Quote */}
               <div className="mb-8">
                 <p className="text-2xl text-white/90 leading-relaxed italic">
-                  "{current.text}"
+                  &ldquo;{current.text}&rdquo;
                 </p>
               </div>
 

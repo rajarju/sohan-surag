@@ -56,19 +56,19 @@ export default function AboutPage() {
             <h2 className="text-4xl font-normal text-white">My Story</h2>
             <div className="space-y-4 text-xl text-white/80 leading-relaxed">
               <p>
-                I'm a product designer with over 8 years of experience creating digital
+                I&apos;m a product designer with over 8 years of experience creating digital
                 products that solve real problems. My journey in design started with a
                 passion for understanding how people interact with technology and a drive
                 to make those interactions more meaningful.
               </p>
               <p>
-                Based in Berlin, I've had the privilege of working with companies across
+                Based in Berlin, I&apos;ve had the privilege of working with companies across
                 60+ countries, designing B2B SaaS products that serve millions of users.
                 My approach combines thorough research, strategic thinking, and
                 meticulous attention to detail.
               </p>
               <p>
-                Beyond pixels and prototypes, I'm passionate about mentoring emerging
+                Beyond pixels and prototypes, I&apos;m passionate about mentoring emerging
                 designers and building design systems that empower teams to create
                 consistently excellent experiences.
               </p>
@@ -230,10 +230,10 @@ export default function AboutPage() {
           className="text-center bg-white/5 rounded-2xl p-12"
         >
           <h2 className="text-4xl font-normal text-white mb-6">
-            Let's Work Together
+            Let&apos;s Work Together
           </h2>
           <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
-            I'm always interested in hearing about new projects and opportunities.
+            I&apos;m always interested in hearing about new projects and opportunities.
             Whether you have a question or just want to say hi, feel free to reach
             out.
           </p>

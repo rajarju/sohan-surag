@@ -257,8 +257,8 @@ export default function EfiIQCase() {
           </p>
           <div className="bg-white/5 rounded-2xl p-8 border border-white/10">
             <blockquote className="text-2xl text-white/90 italic">
-              "EFI IQ transformed our shop. What used to take hours now takes minutes, and
-              we have complete visibility into every job."
+              &ldquo;EFI IQ transformed our shop. What used to take hours now takes minutes, and
+              we have complete visibility into every job.&rdquo;
             </blockquote>
             <p className="text-white/60 mt-4">— Print Shop Owner, California</p>
           </div>
