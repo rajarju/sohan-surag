@@ -4,20 +4,20 @@ import { motion } from 'framer-motion';
 import { FaArrowRight } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
+import { urlFor } from '@/sanity/lib/image';
+import { CaseStudy } from '@/types/sanity';
 
-interface CaseStudyProps {
-  title: string;
-  description: string;
-  tags: string[];
-  metrics: { label: string; value: string }[];
-  image: string;
-  url: string;
+interface CaseStudyCardProps extends CaseStudy {
   delay?: number;
 }
 
-function CaseStudyCard({ title, description, tags, metrics, image, url, delay = 0 }: CaseStudyProps) {
+function CaseStudyCard({ title, description, tags, metrics, thumbnailImage, slug, delay = 0 }: CaseStudyCardProps) {
+  const imageUrl = thumbnailImage
+    ? urlFor(thumbnailImage).width(800).height(600).url()
+    : 'https://picsum.photos/800/600?random=20';
+
   return (
-    <Link href={url}>
+    <Link href={`/case-studies/${slug.current}`}>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -28,7 +28,7 @@ function CaseStudyCard({ title, description, tags, metrics, image, url, delay = 
         {/* Image */}
         <div className="relative aspect-video overflow-hidden bg-white/5">
           <Image
-            src={image}
+            src={imageUrl}
             alt={title}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -75,34 +75,11 @@ function CaseStudyCard({ title, description, tags, metrics, image, url, delay = 
   );
 }
 
-export default function CaseStudies() {
-  const caseStudies = [
-    {
-      title: 'YaraPlus',
-      description: 'The all-in-one platform for crop nutrition',
-      tags: ['Agronomy', 'B2B SaaS', 'Web & Mobile', 'Lead Design'],
-      metrics: [
-        { label: 'Countries', value: '60+' },
-        { label: 'Avg. Adoption', value: '85%' },
-        { label: 'Dropoff', value: '-40%' },
-      ],
-      image: 'https://picsum.photos/800/600?random=20',
-      url: '/case-studies/yaraplus',
-    },
-    {
-      title: 'EFI IQ',
-      description: 'Print Shop Management',
-      tags: ['Web & Mobile', 'B2B SaaS', 'Product Design', 'Lead Designer'],
-      metrics: [
-        { label: 'Satisfaction', value: '92%' },
-        { label: 'Adoption Rate', value: '78%' },
-        { label: 'Dropoff', value: '-35%' },
-      ],
-      image: 'https://picsum.photos/800/600?random=21',
-      url: '/case-studies/efi-iq',
-    },
-  ];
+interface CaseStudiesProps {
+  caseStudies: CaseStudy[];
+}
 
+export default function CaseStudies({ caseStudies }: CaseStudiesProps) {
   return (
     <section className="py-24 px-10">
       <div className="max-w-[1400px] mx-auto">
@@ -121,7 +98,7 @@ export default function CaseStudies() {
         {/* Case Studies Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {caseStudies.map((study, index) => (
-            <CaseStudyCard key={index} {...study} delay={index * 0.2} />
+            <CaseStudyCard key={study._id} {...study} delay={index * 0.2} />
           ))}
         </div>
       </div>

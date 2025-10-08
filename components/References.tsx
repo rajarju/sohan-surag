@@ -4,45 +4,15 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FaChevronLeft, FaChevronRight, FaLinkedin } from 'react-icons/fa';
 import Image from 'next/image';
+import { urlFor } from '@/sanity/lib/image';
+import { Testimonial } from '@/types/sanity';
 
-interface Testimonial {
-  name: string;
-  role: string;
-  company: string;
-  text: string;
-  image: string;
-  linkedin?: string;
+interface ReferencesProps {
+  testimonials: Testimonial[];
 }
 
-export default function References() {
+export default function References({ testimonials }: ReferencesProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const testimonials: Testimonial[] = [
-    {
-      name: 'Frank Esteban',
-      role: 'Web Development',
-      company: 'Tech Corp',
-      text: 'Sohan is one of the BEST PRODUCT DESIGNERS I\'ve worked with. Her thorough, in-depth research approach, including user interviews, helps better understand the audience and their needs.',
-      image: 'https://picsum.photos/100/100?random=30',
-      linkedin: 'https://linkedin.com',
-    },
-    {
-      name: 'Sarah Johnson',
-      role: 'Product Manager',
-      company: 'Design Studio',
-      text: 'Working with Sohan was an absolute pleasure. Their attention to detail and user-centric approach resulted in a product that exceeded all our expectations.',
-      image: 'https://picsum.photos/100/100?random=31',
-      linkedin: 'https://linkedin.com',
-    },
-    {
-      name: 'Michael Chen',
-      role: 'CEO',
-      company: 'StartupXYZ',
-      text: 'Sohan\'s ability to translate complex requirements into elegant, intuitive designs is remarkable. They truly understand what users need.',
-      image: 'https://picsum.photos/100/100?random=32',
-      linkedin: 'https://linkedin.com',
-    },
-  ];
 
   const next = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
@@ -83,12 +53,21 @@ export default function References() {
               {/* Author Info */}
               <div className="flex items-center gap-6">
                 <div className="relative w-16 h-16 rounded-full overflow-hidden bg-white/10">
-                  <Image
-                    src={current.image}
-                    alt={current.name}
-                    fill
-                    className="object-cover"
-                  />
+                  {current.image ? (
+                    <Image
+                      src={urlFor(current.image).width(100).height(100).url()}
+                      alt={current.name}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <Image
+                      src="https://picsum.photos/100/100?random=30"
+                      alt={current.name}
+                      fill
+                      className="object-cover"
+                    />
+                  )}
                 </div>
                 <div className="flex-1">
                   <div className="text-xl font-medium text-white">{current.name}</div>

@@ -4,8 +4,15 @@ import { motion } from 'framer-motion';
 import { FaArrowRight } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
+import { urlFor } from '@/sanity/lib/image';
+import { SanityImage } from '@/types/sanity';
 
-export default function AboutMe() {
+interface AboutMeProps {
+  description: string;
+  profileImage?: SanityImage;
+}
+
+export default function AboutMe({ description, profileImage }: AboutMeProps) {
   return (
     <section id="about" className="py-24 px-10">
       <div className="max-w-[1400px] mx-auto">
@@ -18,29 +25,31 @@ export default function AboutMe() {
         >
           {/* Profile Image */}
           <div className="relative aspect-square rounded-2xl overflow-hidden bg-white/5">
-            <Image
-              src="https://picsum.photos/600/600?random=10"
-              alt="Sohan Surag"
-              fill
-              className="object-cover"
-              priority
-            />
+            {profileImage ? (
+              <Image
+                src={urlFor(profileImage).width(600).height(600).url()}
+                alt="Profile"
+                fill
+                className="object-cover"
+                priority
+              />
+            ) : (
+              <Image
+                src="https://picsum.photos/600/600?random=10"
+                alt="Profile"
+                fill
+                className="object-cover"
+                priority
+              />
+            )}
           </div>
 
           {/* Content */}
           <div className="space-y-8">
             <div>
               <h2 className="text-5xl font-normal text-white mb-6">About Me</h2>
-              <p className="text-xl text-white/70 leading-relaxed mb-6">
-                I&apos;m a product designer based in Berlin, blending design and management
-                to craft solutions that drive real results. With over 8 years of experience in
-                B2B SaaS and enterprise products, I specialize in creating intuitive,
-                user-centered experiences that solve complex problems.
-              </p>
               <p className="text-xl text-white/70 leading-relaxed">
-                I&apos;ve had the privilege of working with companies across 60+ countries,
-                leading design teams, and mentoring emerging designers to achieve
-                exceptional results.
+                {description}
               </p>
             </div>
 
