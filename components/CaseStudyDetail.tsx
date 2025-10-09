@@ -120,11 +120,21 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
             className="mb-20"
           >
             <h2 className="text-4xl font-normal text-white mb-6">The Challenge</h2>
-            <div className="prose prose-invert max-w-none">
+            <div className="prose prose-invert max-w-none mb-8">
               <div className="text-xl text-white/80 leading-relaxed space-y-6">
                 <PortableText value={challenge.text} />
               </div>
             </div>
+            {challenge.image && (
+              <div className="relative aspect-video rounded-2xl overflow-hidden bg-white/5">
+                <Image
+                  src={urlFor(challenge.image).width(1200).height(600).url()}
+                  alt="Challenge"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            )}
           </motion.section>
         )}
 

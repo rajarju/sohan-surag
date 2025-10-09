@@ -1,6 +1,10 @@
 'use client';
 
-export default function Footer() {
+interface FooterProps {
+  name?: string;
+}
+
+export default function Footer({ name }: FooterProps) {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -14,7 +18,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Copyright */}
           <div className="text-white/60 text-sm">
-            Crafted by Sohan Surag ©️ {new Date().getFullYear()}
+            Crafted by {name || 'Sohan Surag'} ©️ {new Date().getFullYear()}
           </div>
 
           {/* Navigation Links */}

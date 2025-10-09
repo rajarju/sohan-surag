@@ -6,6 +6,12 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'name',
+      title: 'Your Name',
+      type: 'string',
+      description: 'Your full name (used in footer, etc.)',
+    }),
+    defineField({
       name: 'title',
       title: 'Site Title',
       type: 'string',

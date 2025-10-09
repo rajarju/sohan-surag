@@ -4,7 +4,11 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-export default function Navbar() {
+interface NavbarProps {
+  name?: string;
+}
+
+export default function Navbar({ name }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const isHomePage = pathname === '/';
@@ -35,7 +39,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="text-white text-xl font-normal tracking-wide hover:opacity-80 transition-opacity">
-            Sohan Surag
+            {name || 'Sohan Surag'}
           </Link>
 
           {/* Navigation Links */}

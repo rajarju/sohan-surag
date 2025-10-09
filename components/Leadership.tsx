@@ -2,14 +2,18 @@
 
 import { motion } from 'framer-motion';
 
-export default function Leadership() {
-  const achievements = [
-    'Led functional & cross-functional design teams of up to 5 members.',
-    'Mentored a junior designer to a middle position in 9 months.',
-    'Led budgeting, resource management, project and client management on a daily basis.',
-    'Developed UX strategy and design process from scratch in 4 months.',
-  ];
+interface LeadershipPoint {
+  _id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
 
+interface LeadershipProps {
+  points: LeadershipPoint[];
+}
+
+export default function Leadership({ points }: LeadershipProps) {
   return (
     <section className="py-24 px-10">
       <div className="max-w-[1400px] mx-auto">
@@ -31,16 +35,18 @@ export default function Leadership() {
 
           {/* Achievement Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {achievements.map((achievement, index) => (
+            {points.map((point, index) => (
               <motion.div
-                key={index}
+                key={point._id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 className="bg-white/5 rounded-2xl p-8 hover:bg-white/10 transition-all"
               >
-                <p className="text-lg text-white/80 leading-relaxed">{achievement}</p>
+                <div className="text-4xl mb-3">{point.icon}</div>
+                <h3 className="text-xl font-medium text-white mb-2">{point.title}</h3>
+                <p className="text-lg text-white/80 leading-relaxed">{point.description}</p>
               </motion.div>
             ))}
           </div>

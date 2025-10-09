@@ -139,6 +139,7 @@ async function migrateContent() {
         heading: "Let's explore new horizons together",
         subheading: '',
       },
+      name: 'Sohan Surag',
     })
 
     // Migrate Case Studies
@@ -414,6 +415,68 @@ async function migrateContent() {
       company: 'StartupXYZ',
       text: "Sohan's ability to translate complex requirements into elegant, intuitive designs is remarkable. They truly understand what users need.",
       order: 3,
+    })
+
+    // Migrate Why Me Points
+    console.log('Migrating Why Me points...')
+
+    await client.create({
+      _type: 'whyMePoint',
+      title: 'Years of Experience',
+      description: 'Great UX = listen to your users, clear workflows, zero guesswork.',
+      icon: '8+',
+      order: 1,
+    })
+
+    await client.create({
+      _type: 'whyMePoint',
+      title: 'Successful Projects',
+      description: 'Delivered projects that exceeded expectations and drove real business results.',
+      icon: '50+',
+      order: 2,
+    })
+
+    await client.create({
+      _type: 'whyMePoint',
+      title: 'Happy Clients',
+      description: 'Built lasting relationships through quality work and reliable delivery.',
+      icon: '25+',
+      order: 3,
+    })
+
+    // Migrate Leadership Points
+    console.log('Migrating Leadership points...')
+
+    await client.create({
+      _type: 'leadershipPoint',
+      title: 'Team Leadership',
+      description: 'Led functional & cross-functional design teams of up to 5 members.',
+      icon: '👥',
+      order: 1,
+    })
+
+    await client.create({
+      _type: 'leadershipPoint',
+      title: 'Mentorship',
+      description: 'Mentored a junior designer to a middle position in 9 months.',
+      icon: '🎓',
+      order: 2,
+    })
+
+    await client.create({
+      _type: 'leadershipPoint',
+      title: 'Project Management',
+      description: 'Led budgeting, resource management, project and client management on a daily basis.',
+      icon: '📊',
+      order: 3,
+    })
+
+    await client.create({
+      _type: 'leadershipPoint',
+      title: 'Process Development',
+      description: 'Developed UX strategy and design process from scratch in 4 months.',
+      icon: '⚙️',
+      order: 4,
     })
 
     console.log('✅ Migration completed successfully!')

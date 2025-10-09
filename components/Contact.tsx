@@ -3,7 +3,12 @@
 import { motion } from 'framer-motion';
 import { FaArrowRight } from 'react-icons/fa';
 
-export default function Contact() {
+interface ContactProps {
+  heading?: string;
+  email?: string;
+}
+
+export default function Contact({ heading, email }: ContactProps) {
   return (
     <section id="contact" className="py-32 px-10 relative overflow-hidden">
       {/* Background Graphics */}
@@ -22,13 +27,13 @@ export default function Contact() {
           <div>
             <p className="text-white/60 text-lg mb-4">Contact</p>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-normal text-white mb-8 max-w-4xl mx-auto leading-tight">
-              Let&apos;s explore new horizons together
+              {heading || "Let's explore new horizons together"}
             </h2>
           </div>
 
           {/* CTA Button */}
           <motion.a
-            href="mailto:hello@sohansurag.com"
+            href={`mailto:${email || 'hello@sohansurag.com'}`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="group inline-flex items-center gap-3 px-10 py-5 bg-white text-black rounded-full text-lg font-medium hover:bg-white/90 transition-all"
