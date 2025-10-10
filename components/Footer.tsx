@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 interface FooterProps {
   name?: string;
 }
@@ -29,12 +31,12 @@ export default function Footer({ name }: FooterProps) {
             >
               Home
             </button>
-            <button
-              onClick={() => scrollToSection('about')}
+            <Link
+              href="/about"
               className="text-white/60 hover:text-white text-sm transition-colors"
             >
               About
-            </button>
+            </Link>
             <button
               onClick={() => scrollToSection('contact')}
               className="text-white/60 hover:text-white text-sm transition-colors"

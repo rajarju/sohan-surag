@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import CaseStudyDetail from '@/components/CaseStudyDetail';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import { getCaseStudyBySlug, getCaseStudies, getSiteSettings } from '@/sanity/lib/fetch';
 
 interface Props {
@@ -27,8 +28,9 @@ export default async function CaseStudyPage({ params }: Props) {
 
   return (
     <>
-      <Navbar name={siteSettings?.name} />
+      <Navbar name={siteSettings?.name} blogUrl={siteSettings?.blogUrl} />
       <CaseStudyDetail caseStudy={caseStudy} />
+      <Footer name={siteSettings?.name} blogUrl={siteSettings?.blogUrl} />
     </>
   );
 }

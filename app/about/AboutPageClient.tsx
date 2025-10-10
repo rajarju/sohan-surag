@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { FaArrowLeft, FaLinkedin } from 'react-icons/fa';
 import { urlFor } from '@/sanity/lib/image';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 interface Skill {
   category: string;
@@ -224,6 +225,7 @@ export default function AboutPageClient({ about, siteSettings }: AboutPageClient
         </motion.section>
       </div>
       </div>
+      <Footer name={siteSettings?.name} />
     </>
   );
 }
