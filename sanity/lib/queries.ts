@@ -47,10 +47,16 @@ export const caseStudyBySlugQuery = groq`*[_type == "caseStudy" && slug.current 
   tags,
   metrics,
   heroImage,
+  projectInfo,
   overview,
   challenge,
+  designProcess,
   research,
+  conceptIdeation,
   solution,
+  handoff,
+  outcome,
+  learnings,
   impact
 }`
 

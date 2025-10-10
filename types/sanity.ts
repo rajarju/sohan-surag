@@ -17,26 +17,82 @@ export interface CaseStudy {
   metrics: { label: string; value: string }[];
   thumbnailImage?: SanityImage;
   heroImage?: SanityImage;
-  overview?: PortableTextBlock[];
+  projectInfo?: {
+    company?: string;
+    role?: string;
+    team?: string[];
+    tools?: string[];
+    timeline?: {
+      duration?: string;
+      status?: string;
+    };
+  };
+  overview?: {
+    businessContext?: PortableTextBlock[];
+    problem?: string[];
+    opportunity?: string;
+    productGoals?: string[];
+    successMetrics?: string[];
+    primaryUsers?: string[];
+    stakeholders?: string[];
+  };
   challenge?: {
     text: PortableTextBlock[];
     image?: SanityImage;
   };
+  designProcess?: {
+    description?: PortableTextBlock[];
+    phases?: {
+      name: string;
+      description?: string;
+      methods?: string[];
+    }[];
+  };
   research?: {
-    text: PortableTextBlock[];
+    text?: PortableTextBlock[];
+    methods?: {
+      title: string;
+      description?: string;
+    }[];
+    challenges?: string[];
+    solutions?: string[];
+    images?: SanityImage[];
     points?: {
       title: string;
       description: string;
     }[];
   };
+  conceptIdeation?: {
+    text?: PortableTextBlock[];
+    approaches?: {
+      title: string;
+      description?: string;
+    }[];
+    challenges?: string[];
+    solutions?: string[];
+    images?: SanityImage[];
+  };
   solution?: {
-    text: PortableTextBlock[];
+    text?: PortableTextBlock[];
     sections?: {
       title: string;
       description: string;
       image?: SanityImage;
     }[];
   };
+  handoff?: {
+    text?: PortableTextBlock[];
+    deliverables?: string[];
+    images?: SanityImage[];
+  };
+  outcome?: {
+    text?: PortableTextBlock[];
+    results?: string[];
+  };
+  learnings?: {
+    title: string;
+    description?: string;
+  }[];
   impact?: {
     text: PortableTextBlock[];
     testimonial?: {
