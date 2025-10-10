@@ -36,18 +36,18 @@ function CaseStudyCard({ title, description, tags, metrics, thumbnailImage, slug
         </div>
 
         {/* Content */}
-        <div className="p-8 space-y-6">
+        <div className="p-6 md:p-8 space-y-4 md:space-y-6">
           <div>
-            <h3 className="text-3xl font-normal text-white mb-2">{title}</h3>
-            <p className="text-lg text-white/70">{description}</p>
+            <h3 className="text-2xl md:text-3xl font-normal text-white mb-2">{title}</h3>
+            <p className="text-base md:text-lg text-white/70">{description}</p>
           </div>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2 md:gap-3">
             {tags.map((tag, index) => (
               <span
                 key={index}
-                className="px-4 py-2 bg-white/10 rounded-full text-sm text-white/80"
+                className="px-3 py-1.5 md:px-4 md:py-2 bg-white/10 rounded-full text-xs md:text-sm text-white/80"
               >
                 {tag}
               </span>
@@ -55,19 +55,19 @@ function CaseStudyCard({ title, description, tags, metrics, thumbnailImage, slug
           </div>
 
           {/* Metrics */}
-          <div className="grid grid-cols-3 gap-6 pt-4 border-t border-white/10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 pt-4 border-t border-white/10">
             {metrics.map((metric, index) => (
               <div key={index}>
-                <div className="text-2xl font-medium text-white mb-1">{metric.value}</div>
-                <div className="text-sm text-white/60">{metric.label}</div>
+                <div className="text-xl md:text-2xl font-medium text-white mb-1">{metric.value}</div>
+                <div className="text-xs md:text-sm text-white/60">{metric.label}</div>
               </div>
             ))}
           </div>
 
           {/* CTA */}
-          <div className="flex items-center gap-2 text-white group-hover:gap-4 transition-all">
+          <div className="flex items-center gap-2 text-sm md:text-base text-white group-hover:gap-4 transition-all">
             <span>View Case Study</span>
-            <FaArrowRight className="text-sm" />
+            <FaArrowRight className="text-xs md:text-sm" />
           </div>
         </div>
       </motion.div>
@@ -81,7 +81,7 @@ interface CaseStudiesProps {
 
 export default function CaseStudies({ caseStudies }: CaseStudiesProps) {
   return (
-    <section className="py-24 px-10">
+    <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-10">
       <div className="max-w-[1400px] mx-auto">
         {/* Header */}
         <motion.div
@@ -89,14 +89,14 @@ export default function CaseStudies({ caseStudies }: CaseStudiesProps) {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-12 md:mb-16"
         >
-          <p className="text-white/60 text-lg mb-2">Work</p>
-          <h2 className="text-5xl font-normal text-white">Selected Case Studies</h2>
+          <p className="text-white/60 text-base md:text-lg mb-2">Work</p>
+          <h2 className="text-4xl md:text-5xl font-normal text-white">Selected Case Studies</h2>
         </motion.div>
 
         {/* Case Studies Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
           {caseStudies.map((study, index) => (
             <CaseStudyCard key={study._id} {...study} delay={index * 0.2} />
           ))}
