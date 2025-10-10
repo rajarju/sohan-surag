@@ -262,33 +262,68 @@ async function migrateContent() {
       _type: 'caseStudy',
       title: 'EFI IQ',
       slug: { _type: 'slug', current: 'efi-iq' },
-      description: 'Print Shop Management',
+      description: 'Cloud platform for Print Shop management',
       tags: ['Web & Mobile', 'B2B SaaS', 'Product Design', 'Lead Designer'],
       metrics: [
-        { _key: randomUUID(), label: 'Satisfaction', value: '92%' },
-        { _key: randomUUID(), label: 'Adoption Rate', value: '78%' },
-        { _key: randomUUID(), label: 'Dropoff', value: '-35%' },
+        { _key: randomUUID(), label: 'increase in multi-feature usage', value: '+50%' },
+        { _key: randomUUID(), label: 'task planning efficiency', value: '+40%' },
+        { _key: randomUUID(), label: 'increase in recurring users', value: '+30%' },
       ],
-      overview: [
-        {
-          _type: 'block',
-          children: [
-            {
-              _type: 'span',
-              text: 'EFI IQ is a comprehensive print shop management solution designed to streamline operations, optimize workflows, and maximize profitability for commercial printing businesses. The platform integrates job management, production tracking, and business analytics into one unified system.',
-            },
-          ],
+      projectInfo: {
+        company: 'Electronics For Imaging',
+        role: 'Lead UX Designer',
+        team: ['Designers x1', 'PM x2', 'Engineers'],
+        tools: ['Balsamiq Mockups', 'Sketch/Figma', 'Hotjar'],
+        timeline: {
+          duration: '9 months',
+          status: 'Ongoing iterations',
         },
-        {
-          _type: 'block',
-          children: [
-            {
-              _type: 'span',
-              text: 'As Lead Designer, I led the product design process, creating an intuitive interface that simplifies complex print shop operations while providing powerful tools for business growth.',
-            },
-          ],
-        },
-      ],
+      },
+      overview: {
+        businessContext: [
+          {
+            _type: 'block',
+            children: [
+              {
+                _type: 'span',
+                text: "EFI's initial attempt at a Cloud Platform for print businesses (Fiery Navigator) was a barebones experience. The product lacked features and analytics without context was ignorable. The 7 year old product has its shortcomings and a few are listed below:",
+              },
+            ],
+          },
+        ],
+        problem: [
+          'Lackluster Historical Data Analysis',
+          'No User Management',
+          'No Device Management',
+          'Clunky Navigation',
+          'No actionable insights',
+        ],
+        opportunity: 'A single, unified cloud destination where customers regularly return to use the suite of EFI cloud-based services.',
+        productGoals: [
+          'Leverage cloud applications to increase print device usage and production uptime. Improve control of your supply chain too.',
+          'Win color-critical customers by showing prospects color verification trends over time and delivering consistent, accurate color.',
+          'Capitalize on print production analytics by transforming the data into informed decision making.',
+          'Onboard and track printers by location, and make printer groups to use in various applications.',
+          'Assign user roles and permissions to give each person the most useful information for their job.',
+          'Set alerts to notify the right people of production-blocking events to minimize downtime.',
+        ],
+        successMetrics: [
+          '+50 increase in multi-feature usage',
+          '+40% task planning efficiency',
+          '+30% increase in recurring users',
+        ],
+        primaryUsers: [
+          'Agronomists managing >10 farms',
+          'Mid-scale farmers (10-200 hectares)',
+          'Yara internal sales/support teams',
+        ],
+        stakeholders: [
+          'PMs (Product Vision)',
+          'Agronomists (Domain Expertise)',
+          'Engineering (Feasibility & Infra)',
+          'Regulatory/Compliance',
+        ],
+      },
       challenge: {
         text: [
           {
@@ -302,6 +337,51 @@ async function migrateContent() {
           },
         ],
       },
+      designProcess: {
+        description: [
+          {
+            _type: 'block',
+            children: [
+              {
+                _type: 'span',
+                text: 'Present throughout the design lifecycle.',
+              },
+            ],
+          },
+        ],
+        phases: [
+          {
+            _key: randomUUID(),
+            name: 'DISCOVERY',
+            description: 'User interviews and competitive analysis to understand pain points',
+            methods: ['User Interviews', 'Competitive Analysis'],
+          },
+          {
+            _key: randomUUID(),
+            name: 'DEFINE',
+            description: 'Information Architecture, Storyboard, User Flow, Personas',
+            methods: ['IA', 'Storyboard', 'User Flow', 'Personas'],
+          },
+          {
+            _key: randomUUID(),
+            name: 'IDEATION',
+            description: 'Wireframes for initial design explorations',
+            methods: ['Wireframes'],
+          },
+          {
+            _key: randomUUID(),
+            name: 'PROTOTYPE',
+            description: 'Mid-fidelity and High-fidelity screens',
+            methods: ['Mid-fidelity Prototype', 'High-fidelity Screens'],
+          },
+          {
+            _key: randomUUID(),
+            name: 'VALIDATION',
+            description: 'User Testing and Survey',
+            methods: ['User Testing', 'Survey'],
+          },
+        ],
+      },
       research: {
         text: [
           {
@@ -309,32 +389,87 @@ async function migrateContent() {
             children: [
               {
                 _type: 'span',
-                text: 'I conducted extensive user research including:',
+                text: 'Methods used:',
               },
             ],
           },
         ],
-        points: [
+        methods: [
           {
             _key: randomUUID(),
-            title: 'On-site Observations',
-            description: 'Spent time in print shops observing workflows, pain points, and daily operations to understand the real-world context.',
+            title: 'Desk Research',
+            description: 'This was a new product in the printing market and the research was mostly done online.',
           },
           {
             _key: randomUUID(),
-            title: 'User Interviews',
-            description: 'Conducted 25+ interviews with shop owners, operators, and production staff to identify key needs and frustrations.',
+            title: 'User interviews (print shop owners, operators)',
+            description: 'During EFI Connect 2016, Las Vegas, I was able to interview some users, primarily Print Shop Owners and operators. They felt rather limited with the features Fiery Navigator offered. A set of questions were asked to learn more about how they used and felt about the product.',
           },
           {
             _key: randomUUID(),
-            title: 'Competitive Analysis',
-            description: 'Analyzed existing solutions to identify gaps and opportunities for innovation.',
+            title: 'Competitive analysis',
+            description: "As one of EFI's key competitors, HP's Print OS was analysed to learn more about what it offered and how the new product could have an edge over those features",
+          },
+        ],
+        challenges: [
+          'Yara has a large backlog of user research data accumulated over several years. Times change and so do user feedback.',
+          'User interviews were mostly with German, UK and Spanish markets and we needed a native speaker to conduct the interviews',
+          'Yara legacy tools were vast and already being used by thousands of users. We needed to find a way to migrate all those users to YaraPlus.',
+        ],
+        solutions: [
+          'Consolidating past research and comparing it with current  user requirements to assure we are designing the product that the users need.',
+          'Being present in user interviews and leveraging translation for taking notes.',
+          'Seamless migration of current users and user accounts prioritized and differentiating between current and new user onboarding for a delightful migration experience.',
+          'Comparing featureset of the legacy products improving the same for YaraPlus, our main aim was not to deviate the experience abut from the legacy products experience.',
+        ],
+      },
+      conceptIdeation: {
+        text: [
+          {
+            _type: 'block',
+            children: [
+              {
+                _type: 'span',
+                text: 'Cross-team workshops: Ran multiple Miro workshops with stakeholders. I wanted to include not just PMs, but also developers, QA testers and Marketing so that we are all working towards a common goal. Feedback was of prime-importance here.',
+              },
+            ],
+          },
+          {
+            _type: 'block',
+            children: [
+              {
+                _type: 'span',
+                text: 'Initial design explorations: Sketches, IA variants, component-level ideas. Using Miro and figma, we went onto create user journeys, wireframes and user flows, we also explored different concepts, from rough sketches to low-fidelity prototypes.',
+              },
+            ],
+          },
+        ],
+        approaches: [
+          {
+            _key: randomUUID(),
+            title: 'Information Architecture',
+            description: 'Given the complexity of a product suite than envelopes all of EFI\'s products an information architecture was essential',
           },
           {
             _key: randomUUID(),
-            title: 'Workflow Mapping',
-            description: 'Created detailed maps of print shop workflows to optimize the user experience.',
+            title: 'User Flow',
+            description: 'Sketches, IA variants, component-level ideas. Using Miro and figma, we went onto create user journeys, wireframes and user flows',
           },
+          {
+            _key: randomUUID(),
+            title: 'Personas',
+            description: 'Testing early with users and stakeholders were crucial so that we all are still on the same page.',
+          },
+        ],
+        challenges: [
+          'Having stakeholders from Product, Marketing, Engineering and Design meant there was a lot of feedback.',
+          'Conflicting marketing needs vs user requirements.',
+          'Working with legacy tool teams to bring everything under one umbrella',
+        ],
+        solutions: [
+          'Prioritizing feedback that lend to user requirements and keeping the rest for backlogs and nice-to-haves',
+          'Pushing back with Marketing favoring user requirements and with user testing and analytics at a later stage to prove the same.',
+          'Albeit time-consuming, worked closely with the legacy tools\' teams to further streamline the migration process.',
         ],
       },
       solution: {
@@ -344,7 +479,16 @@ async function migrateContent() {
             children: [
               {
                 _type: 'span',
-                text: 'Designed a comprehensive yet intuitive management system with three core pillars:',
+                text: 'Mid-fidelity screens & prototype: Sketch was the tool that we had started on but then due to its incompatibilities and a failure to use design systems we moved onto Figma',
+              },
+            ],
+          },
+          {
+            _type: 'block',
+            children: [
+              {
+                _type: 'span',
+                text: 'DOT Design System: EFIs design system entitled DOT was introduced and we migrated to Figma where we arrived at the final solution.',
               },
             ],
           },
@@ -352,21 +496,83 @@ async function migrateContent() {
         sections: [
           {
             _key: randomUUID(),
-            title: 'Job Management Dashboard',
-            description: 'A central hub for tracking all jobs from quote to delivery, with real-time status updates and automated notifications.',
+            title: 'Dashboard - Key Screens',
+            description: 'The main dashboard provides an at-a-glance view of all print jobs, production status, and key metrics. Users can quickly identify bottlenecks and take action.',
           },
           {
             _key: randomUUID(),
-            title: 'Production Workflow',
-            description: 'Streamlined production tracking with drag-and-drop scheduling, resource allocation, and bottleneck identification.',
+            title: 'User & Device Management',
+            description: 'Comprehensive tools for managing team members and printer devices, with role-based permissions and group management.',
           },
           {
             _key: randomUUID(),
-            title: 'Business Intelligence',
-            description: 'Powerful analytics and reporting tools to track profitability, identify trends, and make data-driven decisions.',
+            title: 'Analytics & Reporting',
+            description: 'Powerful analytics dashboard that transforms production data into actionable insights for business growth.',
           },
         ],
       },
+      handoff: {
+        text: [
+          {
+            _type: 'block',
+            children: [
+              {
+                _type: 'span',
+                text: 'Comprehensive design system documentation and developer handoff materials were created to ensure smooth implementation.',
+              },
+            ],
+          },
+        ],
+        deliverables: [
+          'Figma design files with complete component library',
+          'Interactive prototypes for user testing',
+          'Design specifications and style guide',
+          'User flow documentation',
+          'Accessibility guidelines',
+        ],
+      },
+      outcome: {
+        text: [
+          {
+            _type: 'block',
+            children: [
+              {
+                _type: 'span',
+                text: 'EFI IQ successfully launched and received positive feedback from print shop owners and operators. The platform achieved significant improvements in user engagement and satisfaction.',
+              },
+            ],
+          },
+        ],
+        results: [
+          '50% increase in multi-feature usage compared to legacy system',
+          '40% improvement in task planning efficiency',
+          '30% increase in recurring users month-over-month',
+          '92% user satisfaction score',
+          'Reduced onboarding time from 2 hours to 30 minutes',
+        ],
+      },
+      learnings: [
+        {
+          _key: randomUUID(),
+          title: 'User research is invaluable',
+          description: 'Spending time with actual print shop owners revealed pain points we would never have discovered otherwise. Direct observation of workflows was key to understanding real-world needs.',
+        },
+        {
+          _key: randomUUID(),
+          title: 'Stakeholder alignment is crucial',
+          description: 'Regular check-ins with product, marketing, and engineering teams helped us stay aligned and catch potential issues early.',
+        },
+        {
+          _key: randomUUID(),
+          title: 'Iterate, iterate, iterate',
+          description: 'Our best solutions came from multiple rounds of feedback and refinement. No design is perfect on the first try.',
+        },
+        {
+          _key: randomUUID(),
+          title: 'Design systems save time',
+          description: 'Migrating to Figma and using the DOT design system significantly improved our efficiency and consistency.',
+        },
+      ],
       impact: {
         text: [
           {

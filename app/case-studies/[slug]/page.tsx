@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import CaseStudyDetail from '@/components/CaseStudyDetail';
-import { getCaseStudyBySlug, getCaseStudies } from '@/sanity/lib/fetch';
+import Navbar from '@/components/Navbar';
+import { getCaseStudyBySlug, getCaseStudies, getSiteSettings } from '@/sanity/lib/fetch';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -15,11 +16,19 @@ export async function generateStaticParams() {
 
 export default async function CaseStudyPage({ params }: Props) {
   const { slug } = await params;
-  const caseStudy = await getCaseStudyBySlug(slug);
+  const [caseStudy, siteSettings] = await Promise.all([
+    getCaseStudyBySlug(slug),
+    getSiteSettings(),
+  ]);
 
   if (!caseStudy) {
     notFound();
   }
 
-  return <CaseStudyDetail caseStudy={caseStudy} />;
+  return (
+    <>
+      <Navbar name={siteSettings?.name} />
+      <CaseStudyDetail caseStudy={caseStudy} />
+    </>
+  );
 }

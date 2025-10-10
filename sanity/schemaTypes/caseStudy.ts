@@ -74,10 +74,104 @@ export default defineType({
       description: 'Used in case studies grid',
     }),
     defineField({
+      name: 'projectInfo',
+      title: 'Project Information',
+      type: 'object',
+      fields: [
+        {
+          name: 'company',
+          title: 'Company',
+          type: 'string',
+        },
+        {
+          name: 'role',
+          title: 'Your Role',
+          type: 'string',
+        },
+        {
+          name: 'team',
+          title: 'Team',
+          type: 'array',
+          of: [{ type: 'string' }],
+          description: 'e.g., "Designers x6", "PM x4"',
+        },
+        {
+          name: 'tools',
+          title: 'Tools Used',
+          type: 'array',
+          of: [{ type: 'string' }],
+          description: 'e.g., "Miro", "Figma", "Amplitude"',
+        },
+        {
+          name: 'timeline',
+          title: 'Timeline',
+          type: 'object',
+          fields: [
+            {
+              name: 'duration',
+              title: 'Duration',
+              type: 'string',
+              description: 'e.g., "8 months", "6 months"',
+            },
+            {
+              name: 'status',
+              title: 'Status',
+              type: 'string',
+              description: 'e.g., "Ongoing Iterations", "Completed"',
+            },
+          ],
+        },
+      ],
+    }),
+    defineField({
       name: 'overview',
       title: 'Overview',
-      type: 'array',
-      of: [{ type: 'block' }],
+      type: 'object',
+      fields: [
+        {
+          name: 'businessContext',
+          title: 'Business Context',
+          type: 'array',
+          of: [{ type: 'block' }],
+        },
+        {
+          name: 'problem',
+          title: 'Problem',
+          type: 'array',
+          of: [{ type: 'string' }],
+          description: 'List of problem statements',
+        },
+        {
+          name: 'opportunity',
+          title: 'Opportunity',
+          type: 'text',
+          rows: 3,
+        },
+        {
+          name: 'productGoals',
+          title: 'Product Goals',
+          type: 'array',
+          of: [{ type: 'string' }],
+        },
+        {
+          name: 'successMetrics',
+          title: 'Success Metrics',
+          type: 'array',
+          of: [{ type: 'string' }],
+        },
+        {
+          name: 'primaryUsers',
+          title: 'Primary Users',
+          type: 'array',
+          of: [{ type: 'string' }],
+        },
+        {
+          name: 'stakeholders',
+          title: 'Stakeholders',
+          type: 'array',
+          of: [{ type: 'string' }],
+        },
+      ],
     }),
     defineField({
       name: 'challenge',
@@ -99,8 +193,50 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'designProcess',
+      title: 'Design Process',
+      type: 'object',
+      fields: [
+        {
+          name: 'description',
+          title: 'Description',
+          type: 'array',
+          of: [{ type: 'block' }],
+        },
+        {
+          name: 'phases',
+          title: 'Process Phases',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'name',
+                  title: 'Phase Name',
+                  type: 'string',
+                  description: 'e.g., "Discovery", "Define", "Ideation"',
+                },
+                {
+                  name: 'description',
+                  title: 'Description',
+                  type: 'text',
+                },
+                {
+                  name: 'methods',
+                  title: 'Methods Used',
+                  type: 'array',
+                  of: [{ type: 'string' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    }),
+    defineField({
       name: 'research',
-      title: 'Research & Discovery',
+      title: 'Discovery & Research',
       type: 'object',
       fields: [
         {
@@ -110,8 +246,48 @@ export default defineType({
           of: [{ type: 'block' }],
         },
         {
+          name: 'methods',
+          title: 'Research Methods',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'title',
+                  title: 'Method Title',
+                  type: 'string',
+                },
+                {
+                  name: 'description',
+                  title: 'Description',
+                  type: 'text',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'challenges',
+          title: 'Challenges',
+          type: 'array',
+          of: [{ type: 'string' }],
+        },
+        {
+          name: 'solutions',
+          title: 'Solutions',
+          type: 'array',
+          of: [{ type: 'string' }],
+        },
+        {
+          name: 'images',
+          title: 'Supporting Images',
+          type: 'array',
+          of: [{ type: 'image', options: { hotspot: true } }],
+        },
+        {
           name: 'points',
-          title: 'Research Points',
+          title: 'Research Points (Legacy)',
           type: 'array',
           of: [
             {
@@ -130,6 +306,7 @@ export default defineType({
               ],
             },
           ],
+          description: 'Keep for backward compatibility',
         },
       ],
     }),
@@ -175,9 +352,129 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'impact',
-      title: 'Impact',
+      name: 'conceptIdeation',
+      title: 'Concept & Ideation',
       type: 'object',
+      fields: [
+        {
+          name: 'text',
+          title: 'Description',
+          type: 'array',
+          of: [{ type: 'block' }],
+        },
+        {
+          name: 'approaches',
+          title: 'Approaches',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'title',
+                  title: 'Title',
+                  type: 'string',
+                },
+                {
+                  name: 'description',
+                  title: 'Description',
+                  type: 'text',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'challenges',
+          title: 'Challenges',
+          type: 'array',
+          of: [{ type: 'string' }],
+        },
+        {
+          name: 'solutions',
+          title: 'Solutions',
+          type: 'array',
+          of: [{ type: 'string' }],
+        },
+        {
+          name: 'images',
+          title: 'Supporting Images',
+          type: 'array',
+          of: [{ type: 'image', options: { hotspot: true } }],
+        },
+      ],
+    }),
+    defineField({
+      name: 'handoff',
+      title: 'Handoff',
+      type: 'object',
+      fields: [
+        {
+          name: 'text',
+          title: 'Description',
+          type: 'array',
+          of: [{ type: 'block' }],
+        },
+        {
+          name: 'deliverables',
+          title: 'Deliverables',
+          type: 'array',
+          of: [{ type: 'string' }],
+        },
+        {
+          name: 'images',
+          title: 'Supporting Images',
+          type: 'array',
+          of: [{ type: 'image', options: { hotspot: true } }],
+        },
+      ],
+    }),
+    defineField({
+      name: 'outcome',
+      title: 'Outcome',
+      type: 'object',
+      fields: [
+        {
+          name: 'text',
+          title: 'Description',
+          type: 'array',
+          of: [{ type: 'block' }],
+        },
+        {
+          name: 'results',
+          title: 'Results',
+          type: 'array',
+          of: [{ type: 'string' }],
+        },
+      ],
+    }),
+    defineField({
+      name: 'learnings',
+      title: 'Learnings',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'title',
+              title: 'Learning Title',
+              type: 'string',
+            },
+            {
+              name: 'description',
+              title: 'Description',
+              type: 'text',
+            },
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'impact',
+      title: 'Impact (Legacy)',
+      type: 'object',
+      description: 'Keep for backward compatibility - consider using Outcome instead',
       fields: [
         {
           name: 'text',
