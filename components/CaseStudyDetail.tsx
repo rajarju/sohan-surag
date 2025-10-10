@@ -37,18 +37,73 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
     ? urlFor(heroImage).width(1200).height(600).url()
     : 'https://picsum.photos/1200/600?random=20';
 
+  // Helper functions to check if sections have visible content
+  const hasOverviewContent = () => {
+    if (!overview) return false;
+    if (Array.isArray(overview)) return overview.length > 0;
+    return Boolean(
+      overview.businessContext?.length ||
+        overview.problem?.length ||
+        overview.opportunity ||
+        overview.productGoals?.length ||
+        overview.successMetrics?.length ||
+        overview.primaryUsers?.length ||
+        overview.stakeholders?.length
+    );
+  };
+
+  const hasDesignProcessContent = () =>
+    Boolean(
+      designProcess?.description?.length || designProcess?.phases?.length
+    );
+
+  const hasResearchContent = () =>
+    Boolean(
+      research?.text?.length ||
+        research?.methods?.length ||
+        research?.challenges?.length ||
+        research?.solutions?.length ||
+        research?.images?.length ||
+        research?.points?.length
+    );
+
+  const hasConceptIdeationContent = () =>
+    Boolean(
+      conceptIdeation?.text?.length ||
+        conceptIdeation?.approaches?.length ||
+        conceptIdeation?.challenges?.length ||
+        conceptIdeation?.solutions?.length ||
+        conceptIdeation?.images?.length
+    );
+
+  const hasSolutionContent = () =>
+    Boolean(solution?.text?.length || solution?.sections?.length);
+
+  const hasHandoffContent = () =>
+    Boolean(
+      handoff?.text?.length ||
+        handoff?.deliverables?.length ||
+        handoff?.images?.length
+    );
+
+  const hasOutcomeContent = () =>
+    Boolean(outcome?.text?.length || outcome?.results?.length);
+
+  const hasImpactContent = () =>
+    Boolean(impact?.text?.length || impact?.testimonial);
+
   // Build navigation sections based on what content exists
   const navSections = [
-    overview && { id: 'overview', label: 'Overview' },
-    metrics && metrics.length > 0 && { id: 'kpi', label: 'KPI' },
-    designProcess && { id: 'design-process', label: 'Design Process' },
-    research && { id: 'research', label: 'Discovery & Research' },
-    conceptIdeation && { id: 'concept', label: 'Concept & Ideation' },
-    solution && { id: 'solution', label: 'Solution' },
-    handoff && { id: 'handoff', label: 'Handoff' },
-    outcome && { id: 'outcome', label: 'Outcome' },
-    learnings && learnings.length > 0 && { id: 'learnings', label: 'Learnings' },
-    impact && { id: 'impact', label: 'Impact' },
+    hasOverviewContent() && { id: 'overview', label: 'Overview' },
+    metrics?.length > 0 && { id: 'kpi', label: 'KPI' },
+    hasDesignProcessContent() && { id: 'design-process', label: 'Design Process' },
+    hasResearchContent() && { id: 'research', label: 'Discovery & Research' },
+    hasConceptIdeationContent() && { id: 'concept', label: 'Concept & Ideation' },
+    hasSolutionContent() && { id: 'solution', label: 'Solution' },
+    hasHandoffContent() && { id: 'handoff', label: 'Handoff' },
+    hasOutcomeContent() && { id: 'outcome', label: 'Outcome' },
+    learnings?.length > 0 && { id: 'learnings', label: 'Learnings' },
+    hasImpactContent() && { id: 'impact', label: 'Impact' },
   ].filter(Boolean) as { id: string; label: string }[];
 
   return (
@@ -173,7 +228,17 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
               >
                 <h2 className="text-4xl font-normal text-[#4A9FFF] mb-8">Overview</h2>
 
-                {overview.businessContext && (
+                {/* Handle legacy format (array of PortableTextBlock) */}
+                {Array.isArray(overview) ? (
+                  <div className="prose prose-invert max-w-none">
+                    <div className="text-xl text-white/80 leading-relaxed space-y-6">
+                      <PortableText value={overview} />
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    {/* New structured format */}
+                    {overview.businessContext && (
                   <div className="mb-8">
                     <h3 className="text-xl font-medium text-white mb-4">Business Context</h3>
                     <div className="text-lg text-white/80 leading-relaxed">
@@ -248,6 +313,8 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                     </div>
                   )}
                 </div>
+                  </>
+                )}
               </motion.section>
             )}
 

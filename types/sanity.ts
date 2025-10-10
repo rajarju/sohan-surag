@@ -27,17 +27,19 @@ export interface CaseStudy {
       status?: string;
     };
   };
-  overview?: {
-    businessContext?: PortableTextBlock[];
-    problem?: string[];
-    opportunity?: string;
-    productGoals?: string[];
-    successMetrics?: string[];
-    primaryUsers?: string[];
-    stakeholders?: string[];
-  };
+  overview?:
+    | PortableTextBlock[] // Legacy format
+    | { // New structured format
+        businessContext?: PortableTextBlock[];
+        problem?: string[];
+        opportunity?: string;
+        productGoals?: string[];
+        successMetrics?: string[];
+        primaryUsers?: string[];
+        stakeholders?: string[];
+      };
   challenge?: {
-    text: PortableTextBlock[];
+    text?: PortableTextBlock[];
     image?: SanityImage;
   };
   designProcess?: {
@@ -94,7 +96,7 @@ export interface CaseStudy {
     description?: string;
   }[];
   impact?: {
-    text: PortableTextBlock[];
+    text?: PortableTextBlock[];
     testimonial?: {
       quote: string;
       author: string;
