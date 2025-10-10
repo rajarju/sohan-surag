@@ -734,7 +734,7 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
             )}
 
             {/* Challenge (if exists separately) */}
-            {challenge && (
+            {challenge?.text && (
               <motion.section
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
