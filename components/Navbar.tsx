@@ -8,9 +8,10 @@ import { HiMenu, HiX } from 'react-icons/hi';
 interface NavbarProps {
   name?: string;
   blogUrl?: string;
+  resumeUrl?: string;
 }
 
-export default function Navbar({ name, blogUrl }: NavbarProps) {
+export default function Navbar({ name, blogUrl, resumeUrl }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -78,6 +79,16 @@ export default function Navbar({ name, blogUrl }: NavbarProps) {
               >
                 About
               </Link>
+              {resumeUrl && (
+                <a
+                  href={resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white text-base hover:opacity-70 transition-opacity"
+                >
+                  Resume
+                </a>
+              )}
               {blogUrl && (
                 <a
                   href={blogUrl}
@@ -144,6 +155,17 @@ export default function Navbar({ name, blogUrl }: NavbarProps) {
           >
             About
           </Link>
+          {resumeUrl && (
+            <a
+              href={resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white text-2xl hover:text-[#4A9FFF] transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Resume
+            </a>
+          )}
           {blogUrl && (
             <a
               href={blogUrl}

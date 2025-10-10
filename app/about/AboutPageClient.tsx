@@ -71,7 +71,7 @@ export default function AboutPageClient({ about, siteSettings }: AboutPageClient
 
   return (
     <>
-      <Navbar name={siteSettings?.name} blogUrl={siteSettings?.blogUrl} />
+      <Navbar name={siteSettings?.name} blogUrl={siteSettings?.blogUrl} resumeUrl={about?.resumeUrl} />
       <div className="min-h-screen pt-32 pb-24 px-10">
         <div className="max-w-[1400px] mx-auto">
           {/* Hero Section */}

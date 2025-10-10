@@ -15,11 +15,12 @@ import {
   getWhyMePoints,
   getLeadershipPoints,
   getCompanies,
+  getAbout,
 } from '@/sanity/lib/fetch';
 
 export default async function Home() {
   // Fetch all data from Sanity
-  const [hero, caseStudies, testimonials, siteSettings, whyMePoints, leadershipPoints, companies] =
+  const [hero, caseStudies, testimonials, siteSettings, whyMePoints, leadershipPoints, companies, about] =
     await Promise.all([
       getHero(),
       getCaseStudies(),
@@ -28,11 +29,12 @@ export default async function Home() {
       getWhyMePoints(),
       getLeadershipPoints(),
       getCompanies(),
+      getAbout(),
     ]);
 
   return (
     <div className="min-h-screen">
-      <Navbar name={siteSettings?.name} blogUrl={siteSettings?.blogUrl} />
+      <Navbar name={siteSettings?.name} blogUrl={siteSettings?.blogUrl} resumeUrl={about?.resumeUrl} />
       <Hero
         greeting={hero?.greeting}
         name={hero?.name}
