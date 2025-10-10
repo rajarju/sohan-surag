@@ -39,6 +39,7 @@ interface About {
 interface SiteSettings {
   name?: string;
   email?: string;
+  blogUrl?: string;
   contactCTA?: {
     heading?: string;
     subheading?: string;
@@ -60,7 +61,7 @@ export default function AboutPageClient({ about, siteSettings }: AboutPageClient
 
   return (
     <>
-      <Navbar name={siteSettings?.name} />
+      <Navbar name={siteSettings?.name} blogUrl={siteSettings?.blogUrl} />
       <div className="min-h-screen pt-32 pb-24 px-10">
       <div className="max-w-[1200px] mx-auto">
         {/* Back Button */}
@@ -225,7 +226,7 @@ export default function AboutPageClient({ about, siteSettings }: AboutPageClient
         </motion.section>
       </div>
       </div>
-      <Footer name={siteSettings?.name} />
+      <Footer name={siteSettings?.name} blogUrl={siteSettings?.blogUrl} />
     </>
   );
 }

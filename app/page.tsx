@@ -29,7 +29,7 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen">
-      <Navbar name={siteSettings?.name} />
+      <Navbar name={siteSettings?.name} blogUrl={siteSettings?.blogUrl} />
       <Hero
         greeting={hero?.greeting}
         name={hero?.name}
@@ -43,7 +43,7 @@ export default async function Home() {
       <Leadership points={leadershipPoints || []} />
       <References testimonials={testimonials || []} />
       <Contact heading={siteSettings?.contactCTA?.heading} email={siteSettings?.email} />
-      <Footer name={siteSettings?.name} />
+      <Footer name={siteSettings?.name} blogUrl={siteSettings?.blogUrl} />
     </div>
   );
 }

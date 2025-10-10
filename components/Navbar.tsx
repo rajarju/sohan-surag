@@ -6,9 +6,10 @@ import { usePathname } from 'next/navigation';
 
 interface NavbarProps {
   name?: string;
+  blogUrl?: string;
 }
 
-export default function Navbar({ name }: NavbarProps) {
+export default function Navbar({ name, blogUrl }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const isHomePage = pathname === '/';
@@ -56,6 +57,16 @@ export default function Navbar({ name }: NavbarProps) {
             >
               About
             </Link>
+            {blogUrl && (
+              <a
+                href={blogUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white text-base hover:opacity-70 transition-opacity"
+              >
+                Blog
+              </a>
+            )}
             {isHomePage ? (
               <button
                 onClick={() => scrollToSection('contact')}

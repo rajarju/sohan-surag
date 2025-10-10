@@ -4,9 +4,10 @@ import Link from 'next/link';
 
 interface FooterProps {
   name?: string;
+  blogUrl?: string;
 }
 
-export default function Footer({ name }: FooterProps) {
+export default function Footer({ name, blogUrl }: FooterProps) {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -37,6 +38,16 @@ export default function Footer({ name }: FooterProps) {
             >
               About
             </Link>
+            {blogUrl && (
+              <a
+                href={blogUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white text-sm transition-colors"
+              >
+                Blog
+              </a>
+            )}
             <button
               onClick={() => scrollToSection('contact')}
               className="text-white/60 hover:text-white text-sm transition-colors"

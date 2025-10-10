@@ -26,6 +26,7 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   description,
   email,
   name,
+  blogUrl,
   socialLinks,
   contactCTA
 }`

@@ -28,6 +28,12 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'blogUrl',
+      title: 'Blog URL',
+      type: 'url',
+      description: 'External blog URL (e.g., Medium, Substack, etc.)',
+    }),
+    defineField({
       name: 'socialLinks',
       title: 'Social Links',
       type: 'object',
