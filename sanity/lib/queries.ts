@@ -93,3 +93,13 @@ export const leadershipPointsQuery = groq`*[_type == "leadershipPoint"] | order(
   icon,
   order
 }`
+
+// Companies
+export const companiesQuery = groq`*[_type == "company"] | order(order asc){
+  _id,
+  name,
+  logo,
+  website,
+  description,
+  order
+}`

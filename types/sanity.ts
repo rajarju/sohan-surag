@@ -113,3 +113,12 @@ export interface Testimonial {
   image?: SanityImage;
   linkedin?: string;
 }
+
+export interface Company {
+  _id: string;
+  name: string;
+  logo: SanityImage;
+  website?: string;
+  description?: string;
+  order?: number;
+}

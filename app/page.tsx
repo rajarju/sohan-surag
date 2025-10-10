@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import Companies from '@/components/Companies';
 import CaseStudies from '@/components/CaseStudies';
 import WhyMe from '@/components/WhyMe';
 import Leadership from '@/components/Leadership';
@@ -13,11 +14,12 @@ import {
   getSiteSettings,
   getWhyMePoints,
   getLeadershipPoints,
+  getCompanies,
 } from '@/sanity/lib/fetch';
 
 export default async function Home() {
   // Fetch all data from Sanity
-  const [hero, caseStudies, testimonials, siteSettings, whyMePoints, leadershipPoints] =
+  const [hero, caseStudies, testimonials, siteSettings, whyMePoints, leadershipPoints, companies] =
     await Promise.all([
       getHero(),
       getCaseStudies(),
@@ -25,6 +27,7 @@ export default async function Home() {
       getSiteSettings(),
       getWhyMePoints(),
       getLeadershipPoints(),
+      getCompanies(),
     ]);
 
   return (
@@ -38,6 +41,7 @@ export default async function Home() {
         profileImage={hero?.profileImage}
         linkedinUrl={siteSettings?.socialLinks?.linkedin}
       />
+      <Companies companies={companies || []} />
       <CaseStudies caseStudies={caseStudies || []} />
       <WhyMe points={whyMePoints || []} />
       <Leadership points={leadershipPoints || []} />

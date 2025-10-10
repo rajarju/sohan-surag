@@ -7,6 +7,7 @@ import testimonial from './testimonial'
 import whyMePoint from './whyMePoint'
 import leadershipPoint from './leadershipPoint'
 import siteSettings from './siteSettings'
+import company from './company'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -17,5 +18,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     whyMePoint,
     leadershipPoint,
     siteSettings,
+    company,
   ],
 }

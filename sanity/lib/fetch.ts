@@ -8,6 +8,7 @@ import {
   testimonialsQuery,
   whyMePointsQuery,
   leadershipPointsQuery,
+  companiesQuery,
 } from './queries'
 
 export async function getHero() {
@@ -40,4 +41,8 @@ export async function getWhyMePoints() {
 
 export async function getLeadershipPoints() {
   return await client.fetch(leadershipPointsQuery)
+}
+
+export async function getCompanies() {
+  return await client.fetch(companiesQuery)
 }
