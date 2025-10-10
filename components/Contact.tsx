@@ -15,6 +15,21 @@ export default function Contact({ heading, email }: ContactProps) {
       <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-64 h-64 md:w-96 md:h-96 bg-gradient-to-tr from-white/5 to-transparent rounded-full blur-3xl" />
 
+      {/* Horizon/Planet Glow Effect */}
+      <div className="absolute -bottom-[40%] sm:-bottom-[35%] md:-bottom-[30%] left-1/2 -translate-x-1/2 w-[250%] sm:w-[200%] md:w-[180%] lg:w-[150%] aspect-square pointer-events-none">
+        {/* Dark planet/sphere base */}
+        <div className="absolute inset-0 rounded-full bg-gradient-radial from-black via-black to-transparent opacity-90" />
+
+        {/* Primary atmospheric glow - bright edge */}
+        <div className="absolute inset-0 rounded-full bg-gradient-radial from-transparent via-transparent to-white/30 blur-2xl" style={{ background: 'radial-gradient(circle at center, transparent 45%, rgba(255,255,255,0.15) 48%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.1) 52%, transparent 55%)' }} />
+
+        {/* Secondary glow - softer outer atmosphere */}
+        <div className="absolute inset-0 rounded-full" style={{ background: 'radial-gradient(circle at center, transparent 47%, rgba(200,220,255,0.08) 50%, transparent 54%)', filter: 'blur(40px)' }} />
+
+        {/* Inner subtle glow */}
+        <div className="absolute inset-0 rounded-full" style={{ background: 'radial-gradient(circle at center, transparent 48%, rgba(255,255,255,0.06) 50%, transparent 52%)', filter: 'blur(20px)' }} />
+      </div>
+
       <div className="max-w-[1400px] mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
