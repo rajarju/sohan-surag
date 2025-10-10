@@ -2,8 +2,11 @@ import { groq } from 'next-sanity'
 
 // Hero Section
 export const heroQuery = groq`*[_type == "hero"][0]{
+  greeting,
+  name,
   title,
-  subtitle
+  subtitle,
+  profileImage
 }`
 
 // About Page

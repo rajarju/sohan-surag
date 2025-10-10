@@ -1,7 +1,5 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import CTASection from '@/components/CTASection';
-import AboutMe from '@/components/AboutMe';
 import CaseStudies from '@/components/CaseStudies';
 import WhyMe from '@/components/WhyMe';
 import Leadership from '@/components/Leadership';
@@ -10,7 +8,6 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import {
   getHero,
-  getAbout,
   getCaseStudies,
   getTestimonials,
   getSiteSettings,
@@ -20,10 +17,9 @@ import {
 
 export default async function Home() {
   // Fetch all data from Sanity
-  const [hero, about, caseStudies, testimonials, siteSettings, whyMePoints, leadershipPoints] =
+  const [hero, caseStudies, testimonials, siteSettings, whyMePoints, leadershipPoints] =
     await Promise.all([
       getHero(),
-      getAbout(),
       getCaseStudies(),
       getTestimonials(),
       getSiteSettings(),
@@ -34,9 +30,14 @@ export default async function Home() {
   return (
     <div className="min-h-screen">
       <Navbar name={siteSettings?.name} />
-      <Hero title={hero?.title || 'Product designer.'} subtitle={hero?.subtitle} />
-      <CTASection linkedinUrl={siteSettings?.socialLinks?.linkedin} />
-      <AboutMe description={about?.description || ''} profileImage={about?.profileImage} />
+      <Hero
+        greeting={hero?.greeting}
+        name={hero?.name}
+        title={hero?.title || 'Product designer.'}
+        subtitle={hero?.subtitle}
+        profileImage={hero?.profileImage}
+        linkedinUrl={siteSettings?.socialLinks?.linkedin}
+      />
       <CaseStudies caseStudies={caseStudies || []} />
       <WhyMe points={whyMePoints || []} />
       <Leadership points={leadershipPoints || []} />

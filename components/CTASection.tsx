@@ -1,13 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 
-interface CTASectionProps {
-  linkedinUrl?: string;
-}
-
-export default function CTASection({ linkedinUrl }: CTASectionProps) {
+export default function CTASection() {
   return (
     <section className="py-16 px-10">
       <div className="max-w-[1400px] mx-auto">
@@ -18,20 +14,7 @@ export default function CTASection({ linkedinUrl }: CTASectionProps) {
           viewport={{ once: true }}
           className="flex flex-wrap gap-6"
         >
-          {/* LinkedIn Button */}
-          {linkedinUrl && (
-            <a
-              href={linkedinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full hover:bg-white/90 transition-all"
-            >
-              <FaLinkedin className="text-xl" />
-              <span className="font-medium">LinkedIn</span>
-            </a>
-          )}
-
-          {/* Secondary CTA Button */}
+          {/* Get in touch Button */}
           <button
             onClick={() => {
               const element = document.getElementById('contact');
