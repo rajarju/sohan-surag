@@ -55,4 +55,10 @@ export const structure: StructureResolver = (S) =>
           S.documentTypeList('leadershipPoint')
             .title('Leadership Points')
         ),
+      S.listItem()
+        .title('Companies')
+        .child(
+          S.documentTypeList('company')
+            .title('Companies')
+        ),
     ])
