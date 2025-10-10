@@ -132,12 +132,25 @@ export interface About {
   heroImage?: SanityImage;
   resumeUrl?: string;
 
+  // Legacy fields (kept for backward compatibility)
+  title?: string;
+  description?: string;
+  profileImage?: SanityImage;
+  storyParagraphs?: string[];
+
   // Experience Section
   experienceIntro?: string[];
   experience?: {
     company: string;
     role: string;
     period: string;
+    description?: string; // Optional detailed description
+  }[];
+
+  // Skills & Expertise
+  skills?: {
+    category: string;
+    items?: string[];
   }[];
 
   // Education Section
@@ -145,6 +158,13 @@ export interface About {
     degree: string;
     institution: string;
     period: string;
+  }[];
+
+  // Recognition & Awards
+  recognition?: {
+    emoji: string;
+    title: string;
+    year: string;
   }[];
 
   // Outside Work Section

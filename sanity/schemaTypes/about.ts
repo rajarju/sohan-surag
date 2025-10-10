@@ -50,6 +50,37 @@ export default defineType({
       description: 'Link to downloadable resume (optional)',
     }),
 
+    // Legacy fields (kept for backward compatibility)
+    defineField({
+      name: 'title',
+      title: 'Page Title (Legacy)',
+      type: 'string',
+      description: 'Old page title field - kept for backward compatibility',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description (Legacy)',
+      type: 'text',
+      rows: 3,
+      description: 'Old description field - kept for backward compatibility',
+    }),
+    defineField({
+      name: 'profileImage',
+      title: 'Profile Image (Legacy)',
+      type: 'image',
+      description: 'Old profile image - kept for backward compatibility',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: 'storyParagraphs',
+      title: 'Story Paragraphs',
+      type: 'array',
+      description: 'Paragraphs about your background and story',
+      of: [{ type: 'text', rows: 4 }],
+    }),
+
     // Experience Section
     defineField({
       name: 'experienceIntro',
@@ -85,6 +116,12 @@ export default defineType({
               description: 'e.g., "Jun 2023 - Present"',
               validation: (Rule) => Rule.required(),
             },
+            {
+              name: 'description',
+              title: 'Description',
+              type: 'text',
+              description: 'Optional detailed description of role and achievements',
+            },
           ],
           preview: {
             select: {
@@ -92,6 +129,31 @@ export default defineType({
               subtitle: 'role',
             },
           },
+        },
+      ],
+    }),
+
+    // Skills & Expertise
+    defineField({
+      name: 'skills',
+      title: 'Skills & Expertise',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'category',
+              title: 'Category',
+              type: 'string',
+            },
+            {
+              name: 'items',
+              title: 'Skills',
+              type: 'array',
+              of: [{ type: 'string' }],
+            },
+          ],
         },
       ],
     }),
@@ -131,6 +193,35 @@ export default defineType({
               subtitle: 'institution',
             },
           },
+        },
+      ],
+    }),
+
+    // Recognition & Awards
+    defineField({
+      name: 'recognition',
+      title: 'Recognition & Awards',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'emoji',
+              title: 'Emoji',
+              type: 'string',
+            },
+            {
+              name: 'title',
+              title: 'Award Title',
+              type: 'string',
+            },
+            {
+              name: 'year',
+              title: 'Year',
+              type: 'string',
+            },
+          ],
         },
       ],
     }),

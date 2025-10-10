@@ -36,7 +36,7 @@ export default function AboutPageClient({ about, siteSettings }: AboutPageClient
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['experience', 'education', 'outside-work'];
+      const sections = ['story', 'experience', 'skills', 'education', 'recognition', 'outside-work'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -145,6 +145,18 @@ export default function AboutPageClient({ about, siteSettings }: AboutPageClient
             {/* Left Sidebar Navigation */}
             <aside className="lg:sticky lg:top-32 h-fit">
               <nav className="space-y-4">
+                {about?.storyParagraphs && about.storyParagraphs.length > 0 && (
+                  <button
+                    onClick={() => scrollToSection('story')}
+                    className={`block text-left transition-colors ${
+                      activeSection === 'story'
+                        ? 'text-[#4A9FFF] font-medium'
+                        : 'text-white/60 hover:text-white'
+                    }`}
+                  >
+                    Story
+                  </button>
+                )}
                 <button
                   onClick={() => scrollToSection('experience')}
                   className={`block text-left transition-colors ${
@@ -155,31 +167,77 @@ export default function AboutPageClient({ about, siteSettings }: AboutPageClient
                 >
                   Experience
                 </button>
-                <button
-                  onClick={() => scrollToSection('education')}
-                  className={`block text-left transition-colors ${
-                    activeSection === 'education'
-                      ? 'text-[#4A9FFF] font-medium'
-                      : 'text-white/60 hover:text-white'
-                  }`}
-                >
-                  Education
-                </button>
-                <button
-                  onClick={() => scrollToSection('outside-work')}
-                  className={`block text-left transition-colors ${
-                    activeSection === 'outside-work'
-                      ? 'text-[#4A9FFF] font-medium'
-                      : 'text-white/60 hover:text-white'
-                  }`}
-                >
-                  Outside Work
-                </button>
+                {about?.skills && about.skills.length > 0 && (
+                  <button
+                    onClick={() => scrollToSection('skills')}
+                    className={`block text-left transition-colors ${
+                      activeSection === 'skills'
+                        ? 'text-[#4A9FFF] font-medium'
+                        : 'text-white/60 hover:text-white'
+                    }`}
+                  >
+                    Skills
+                  </button>
+                )}
+                {about?.education && about.education.length > 0 && (
+                  <button
+                    onClick={() => scrollToSection('education')}
+                    className={`block text-left transition-colors ${
+                      activeSection === 'education'
+                        ? 'text-[#4A9FFF] font-medium'
+                        : 'text-white/60 hover:text-white'
+                    }`}
+                  >
+                    Education
+                  </button>
+                )}
+                {about?.recognition && about.recognition.length > 0 && (
+                  <button
+                    onClick={() => scrollToSection('recognition')}
+                    className={`block text-left transition-colors ${
+                      activeSection === 'recognition'
+                        ? 'text-[#4A9FFF] font-medium'
+                        : 'text-white/60 hover:text-white'
+                    }`}
+                  >
+                    Recognition
+                  </button>
+                )}
+                {((about?.goodreadsUrl) || (about?.favoriteQuote) || (about?.hobbies && about.hobbies.length > 0)) && (
+                  <button
+                    onClick={() => scrollToSection('outside-work')}
+                    className={`block text-left transition-colors ${
+                      activeSection === 'outside-work'
+                        ? 'text-[#4A9FFF] font-medium'
+                        : 'text-white/60 hover:text-white'
+                    }`}
+                  >
+                    Outside Work
+                  </button>
+                )}
               </nav>
             </aside>
 
             {/* Right Content */}
             <div className="space-y-24">
+              {/* Story Section */}
+              {about?.storyParagraphs && about.storyParagraphs.length > 0 && (
+                <motion.section
+                  id="story"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="text-4xl font-normal text-[#4A9FFF] mb-8">My Story</h2>
+                  <div className="space-y-4 text-lg text-white/80 leading-relaxed">
+                    {about.storyParagraphs.map((paragraph: string, index: number) => (
+                      <p key={index}>{paragraph}</p>
+                    ))}
+                  </div>
+                </motion.section>
+              )}
+
               {/* Experience Section */}
               <motion.section
                 id="experience"
@@ -209,24 +267,52 @@ export default function AboutPageClient({ about, siteSettings }: AboutPageClient
                       >
                         <h3 className="text-xl font-normal text-white mb-1">{exp.company}</h3>
                         <p className="text-white/70 mb-1">{exp.role}</p>
-                        <p className="text-white/50 text-sm">{exp.period}</p>
+                        <p className="text-white/50 text-sm mb-2">{exp.period}</p>
+                        {exp.description && (
+                          <p className="text-white/70 text-sm leading-relaxed">{exp.description}</p>
+                        )}
                       </div>
                     ))}
                   </div>
                 )}
               </motion.section>
 
-              {/* Education Section */}
-              <motion.section
-                id="education"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-4xl font-normal text-[#4A9FFF] mb-8">Education</h2>
+              {/* Skills & Expertise Section */}
+              {about?.skills && about.skills.length > 0 && (
+                <motion.section
+                  id="skills"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="text-4xl font-normal text-[#4A9FFF] mb-8">Skills & Expertise</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {about.skills.map((skill, index: number) => (
+                      <div key={index} className="bg-white/5 rounded-2xl p-6">
+                        <h3 className="text-xl font-normal text-white mb-4">{skill.category}</h3>
+                        <ul className="space-y-2 text-white/70">
+                          {skill.items?.map((item: string, idx: number) => (
+                            <li key={idx} className="text-sm">• {item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </motion.section>
+              )}
 
-                {about?.education && about.education.length > 0 && (
+              {/* Education Section */}
+              {about?.education && about.education.length > 0 && (
+                <motion.section
+                  id="education"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="text-4xl font-normal text-[#4A9FFF] mb-8">Education</h2>
+
                   <div className="space-y-6">
                     {about.education.map((edu, index: number) => (
                       <div
@@ -239,38 +325,63 @@ export default function AboutPageClient({ about, siteSettings }: AboutPageClient
                       </div>
                     ))}
                   </div>
-                )}
-              </motion.section>
+                </motion.section>
+              )}
+
+              {/* Recognition & Awards Section */}
+              {about?.recognition && about.recognition.length > 0 && (
+                <motion.section
+                  id="recognition"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="text-4xl font-normal text-[#4A9FFF] mb-8">Recognition & Awards</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {about.recognition.map((award, index: number) => (
+                      <div key={index} className="bg-white/5 rounded-2xl p-6">
+                        <div className="text-4xl mb-4">{award.emoji}</div>
+                        <h3 className="text-lg font-normal text-white mb-2">{award.title}</h3>
+                        <p className="text-white/60 text-sm">{award.year}</p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.section>
+              )}
 
               {/* Outside Work Section */}
-              <motion.section
-                id="outside-work"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
+              {((about?.goodreadsUrl) || (about?.favoriteQuote) || (about?.hobbies && about.hobbies.length > 0)) && (
+                <motion.section
+                  id="outside-work"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="space-y-8"
+                >
                 <h2 className="text-4xl font-normal text-[#4A9FFF] mb-8">Outside Work</h2>
 
                 {/* Goodreads Link */}
                 {about?.goodreadsUrl && (
-                  <p className="text-lg text-white/80 mb-6">
+                  <p className="text-lg text-white/80 leading-relaxed">
                     Love reading books. You can find me on{' '}
                     <a
                       href={about.goodreadsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#4A9FFF] hover:underline"
+                      className="text-[#4A9FFF] hover:underline font-medium"
                     >
                       Goodreads
                     </a>
+                    .
                   </p>
                 )}
 
                 {/* Favorite Quote */}
                 {about?.favoriteQuote && (
-                  <div className="bg-white/5 rounded-2xl p-8 mb-8">
-                    <p className="text-sm text-white/60 mb-2">Favorite Quote:</p>
+                  <div className="bg-white/5 rounded-2xl p-8 border border-white/10">
+                    <p className="text-sm text-white/50 mb-3 uppercase tracking-wide">Favorite Quote:</p>
                     <p className="text-xl text-white/90 italic leading-relaxed">
                       &ldquo;{about.favoriteQuote}&rdquo;
                     </p>
@@ -279,13 +390,16 @@ export default function AboutPageClient({ about, siteSettings }: AboutPageClient
 
                 {/* Hobbies */}
                 {about?.hobbies && about.hobbies.length > 0 && (
-                  <div className="space-y-4 text-lg text-white/80 leading-relaxed">
+                  <div className="space-y-6">
                     {about.hobbies.map((hobby: string, index: number) => (
-                      <p key={index}>{hobby}</p>
+                      <p key={index} className="text-lg text-white/80 leading-relaxed">
+                        {hobby}
+                      </p>
                     ))}
                   </div>
                 )}
-              </motion.section>
+                </motion.section>
+              )}
             </div>
           </div>
 
