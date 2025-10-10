@@ -5,54 +5,58 @@ export default defineType({
   title: 'About Page',
   type: 'document',
   fields: [
+    // Hero Section
     defineField({
-      name: 'title',
-      title: 'Page Title',
+      name: 'tagline1',
+      title: 'Tagline Line 1',
       type: 'string',
+      description: 'First line of tagline (e.g., "Designer by craft.")',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-      rows: 3,
+      name: 'tagline2',
+      title: 'Tagline Line 2',
+      type: 'string',
+      description: 'Second line of tagline (e.g., "Strategist by mindset.")',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'profileImage',
-      title: 'Profile Image',
+      name: 'tagline3',
+      title: 'Tagline Line 3',
+      type: 'string',
+      description: 'Third line of tagline (e.g., "Storyteller at heart.")',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
+      description: 'Hero subtitle text',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'heroImage',
+      title: 'Hero Illustration',
       type: 'image',
+      description: 'Circular illustration for the hero section',
       options: {
         hotspot: true,
       },
     }),
     defineField({
-      name: 'storyParagraphs',
-      title: 'Story Paragraphs',
-      type: 'array',
-      of: [{ type: 'text', rows: 4 }],
+      name: 'resumeUrl',
+      title: 'Resume URL',
+      type: 'url',
+      description: 'Link to downloadable resume (optional)',
     }),
+
+    // Experience Section
     defineField({
-      name: 'skills',
-      title: 'Skills & Expertise',
+      name: 'experienceIntro',
+      title: 'Experience Introduction',
       type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            {
-              name: 'category',
-              title: 'Category',
-              type: 'string',
-            },
-            {
-              name: 'items',
-              title: 'Skills',
-              type: 'array',
-              of: [{ type: 'string' }],
-            },
-          ],
-        },
-      ],
+      description: 'Introductory paragraphs for the Experience section',
+      of: [{ type: 'text', rows: 4 }],
     }),
     defineField({
       name: 'experience',
@@ -63,60 +67,100 @@ export default defineType({
           type: 'object',
           fields: [
             {
-              name: 'period',
-              title: 'Time Period',
+              name: 'company',
+              title: 'Company Name',
               type: 'string',
+              validation: (Rule) => Rule.required(),
             },
             {
               name: 'role',
-              title: 'Role',
+              title: 'Role/Position',
               type: 'string',
+              validation: (Rule) => Rule.required(),
             },
             {
-              name: 'company',
-              title: 'Company',
+              name: 'period',
+              title: 'Time Period',
               type: 'string',
-            },
-            {
-              name: 'description',
-              title: 'Description',
-              type: 'text',
+              description: 'e.g., "Jun 2023 - Present"',
+              validation: (Rule) => Rule.required(),
             },
           ],
+          preview: {
+            select: {
+              title: 'company',
+              subtitle: 'role',
+            },
+          },
         },
       ],
     }),
+
+    // Education Section
     defineField({
-      name: 'recognition',
-      title: 'Recognition & Awards',
+      name: 'education',
+      title: 'Education',
       type: 'array',
       of: [
         {
           type: 'object',
           fields: [
             {
-              name: 'emoji',
-              title: 'Emoji',
+              name: 'degree',
+              title: 'Degree/Certificate',
               type: 'string',
+              validation: (Rule) => Rule.required(),
             },
             {
-              name: 'title',
-              title: 'Award Title',
+              name: 'institution',
+              title: 'Institution',
               type: 'string',
+              validation: (Rule) => Rule.required(),
             },
             {
-              name: 'year',
-              title: 'Year',
+              name: 'period',
+              title: 'Time Period',
               type: 'string',
+              description: 'e.g., "2004 - 2007"',
+              validation: (Rule) => Rule.required(),
             },
           ],
+          preview: {
+            select: {
+              title: 'degree',
+              subtitle: 'institution',
+            },
+          },
         },
       ],
+    }),
+
+    // Outside Work Section
+    defineField({
+      name: 'goodreadsUrl',
+      title: 'Goodreads Profile URL',
+      type: 'url',
+      description: 'Link to Goodreads profile (optional)',
+    }),
+    defineField({
+      name: 'favoriteQuote',
+      title: 'Favorite Quote',
+      type: 'text',
+      rows: 3,
+      description: 'Your favorite quote',
+    }),
+    defineField({
+      name: 'hobbies',
+      title: 'Hobbies & Interests',
+      type: 'array',
+      description: 'Paragraphs describing hobbies and interests',
+      of: [{ type: 'text', rows: 4 }],
     }),
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'tagline1',
+      subtitle: 'subtitle',
     },
   },
 })

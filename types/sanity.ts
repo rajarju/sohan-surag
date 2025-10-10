@@ -122,3 +122,33 @@ export interface Company {
   description?: string;
   order?: number;
 }
+
+export interface About {
+  // Hero Section
+  tagline1: string;
+  tagline2: string;
+  tagline3: string;
+  subtitle: string;
+  heroImage?: SanityImage;
+  resumeUrl?: string;
+
+  // Experience Section
+  experienceIntro?: string[];
+  experience?: {
+    company: string;
+    role: string;
+    period: string;
+  }[];
+
+  // Education Section
+  education?: {
+    degree: string;
+    institution: string;
+    period: string;
+  }[];
+
+  // Outside Work Section
+  goodreadsUrl?: string;
+  favoriteQuote?: string;
+  hobbies?: string[];
+}

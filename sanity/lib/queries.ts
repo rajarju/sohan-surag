@@ -11,13 +11,18 @@ export const heroQuery = groq`*[_type == "hero"][0]{
 
 // About Page
 export const aboutQuery = groq`*[_type == "about"][0]{
-  title,
-  description,
-  profileImage,
-  storyParagraphs,
-  skills,
+  tagline1,
+  tagline2,
+  tagline3,
+  subtitle,
+  heroImage,
+  resumeUrl,
+  experienceIntro,
   experience,
-  recognition
+  education,
+  goodreadsUrl,
+  favoriteQuote,
+  hobbies
 }`
 
 // Site Settings
