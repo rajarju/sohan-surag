@@ -2,11 +2,11 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
 import { FaLinkedin } from 'react-icons/fa';
 import { urlFor } from '@/sanity/lib/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Contact from '@/components/Contact';
 import { About } from '@/types/sanity';
 import { useState, useEffect } from 'react';
 
@@ -289,30 +289,15 @@ export default function AboutPageClient({ about, siteSettings }: AboutPageClient
             </div>
           </div>
 
-          {/* Contact Section */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mt-32 text-center"
-          >
-            <h2 className="text-5xl font-normal text-white mb-4">Contact</h2>
-            <p className="text-2xl text-white/70 mb-6">
-              {siteSettings?.email || 'sohansurag@gmail.com'}
-            </p>
-            <p className="text-xl text-white/60 mb-8">
-              {siteSettings?.contactCTA?.subheading || "Let's explore new horizons together"}
-            </p>
-            <Link
-              href={`mailto:${siteSettings?.email || 'sohansurag@gmail.com'}`}
-              className="inline-block px-8 py-4 bg-[#4A9FFF] text-white rounded-full hover:bg-[#3A8FEF] transition-all font-medium"
-            >
-              View Case Study
-            </Link>
-          </motion.section>
         </div>
       </div>
+
+      {/* Contact Section - using same component as home page */}
+      <Contact
+        heading={siteSettings?.contactCTA?.heading}
+        email={siteSettings?.email}
+      />
+
       <Footer name={siteSettings?.name} blogUrl={siteSettings?.blogUrl} />
     </>
   );
