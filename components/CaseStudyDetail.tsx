@@ -95,14 +95,14 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
   // Build navigation sections based on what content exists
   const navSections = [
     hasOverviewContent() && { id: 'overview', label: 'Overview' },
-    metrics?.length > 0 && { id: 'kpi', label: 'KPI' },
+    (metrics?.length ?? 0) > 0 && { id: 'kpi', label: 'KPI' },
     hasDesignProcessContent() && { id: 'design-process', label: 'Design Process' },
     hasResearchContent() && { id: 'research', label: 'Discovery & Research' },
     hasConceptIdeationContent() && { id: 'concept', label: 'Concept & Ideation' },
     hasSolutionContent() && { id: 'solution', label: 'Solution' },
     hasHandoffContent() && { id: 'handoff', label: 'Handoff' },
     hasOutcomeContent() && { id: 'outcome', label: 'Outcome' },
-    learnings?.length > 0 && { id: 'learnings', label: 'Learnings' },
+    (learnings?.length ?? 0) > 0 && { id: 'learnings', label: 'Learnings' },
     hasImpactContent() && { id: 'impact', label: 'Impact' },
   ].filter(Boolean) as { id: string; label: string }[];
 
