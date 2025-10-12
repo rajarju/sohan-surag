@@ -8,6 +8,7 @@ import { urlFor } from '@/sanity/lib/image';
 import { PortableText } from '@portabletext/react';
 import { CaseStudy } from '@/types/sanity';
 import CaseStudyNav from './CaseStudyNav';
+import ImageCarousel from './ImageCarousel';
 
 interface CaseStudyDetailProps {
   caseStudy: CaseStudy;
@@ -313,6 +314,13 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                     </div>
                   )}
                 </div>
+
+                {/* Images */}
+                {overview.images && overview.images.length > 0 && (
+                  <div className="mt-8">
+                    <ImageCarousel images={overview.images} altPrefix="Overview" />
+                  </div>
+                )}
                   </>
                 )}
               </motion.section>
@@ -397,6 +405,13 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                     ))}
                   </div>
                 )}
+
+                {/* Images */}
+                {designProcess.images && designProcess.images.length > 0 && (
+                  <div className="mt-8">
+                    <ImageCarousel images={designProcess.images} altPrefix="Design Process" />
+                  </div>
+                )}
               </motion.section>
             )}
 
@@ -462,20 +477,8 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                 )}
 
                 {research.images && research.images.length > 0 && (
-                  <div className="grid grid-cols-2 gap-4 mt-6">
-                    {research.images.map((img, i) => (
-                      <div
-                        key={i}
-                        className="relative aspect-video rounded-xl overflow-hidden bg-white/5"
-                      >
-                        <Image
-                          src={urlFor(img).width(600).height(400).url()}
-                          alt={`Research ${i + 1}`}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    ))}
+                  <div className="mt-6">
+                    <ImageCarousel images={research.images} altPrefix="Research" />
                   </div>
                 )}
               </motion.section>
@@ -540,20 +543,8 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                 )}
 
                 {conceptIdeation.images && conceptIdeation.images.length > 0 && (
-                  <div className="grid grid-cols-2 gap-4 mt-6">
-                    {conceptIdeation.images.map((img, i) => (
-                      <div
-                        key={i}
-                        className="relative aspect-video rounded-xl overflow-hidden bg-white/5"
-                      >
-                        <Image
-                          src={urlFor(img).width(600).height(400).url()}
-                          alt={`Concept ${i + 1}`}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    ))}
+                  <div className="mt-6">
+                    <ImageCarousel images={conceptIdeation.images} altPrefix="Concept" />
                   </div>
                 )}
               </motion.section>
@@ -630,20 +621,8 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                 )}
 
                 {handoff.images && handoff.images.length > 0 && (
-                  <div className="grid grid-cols-2 gap-4 mt-6">
-                    {handoff.images.map((img, i) => (
-                      <div
-                        key={i}
-                        className="relative aspect-video rounded-xl overflow-hidden bg-white/5"
-                      >
-                        <Image
-                          src={urlFor(img).width(600).height(400).url()}
-                          alt={`Handoff ${i + 1}`}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    ))}
+                  <div className="mt-6">
+                    <ImageCarousel images={handoff.images} altPrefix="Handoff" />
                   </div>
                 )}
               </motion.section>
@@ -674,6 +653,13 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                         <li key={i}>{result}</li>
                       ))}
                     </ul>
+                  </div>
+                )}
+
+                {/* Images */}
+                {outcome.images && outcome.images.length > 0 && (
+                  <div className="mt-6">
+                    <ImageCarousel images={outcome.images} altPrefix="Outcome" />
                   </div>
                 )}
               </motion.section>

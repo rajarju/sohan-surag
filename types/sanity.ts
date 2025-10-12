@@ -37,6 +37,7 @@ export interface CaseStudy {
         successMetrics?: string[];
         primaryUsers?: string[];
         stakeholders?: string[];
+        images?: SanityImage[];
       };
   challenge?: {
     text?: PortableTextBlock[];
@@ -49,6 +50,7 @@ export interface CaseStudy {
       description?: string;
       methods?: string[];
     }[];
+    images?: SanityImage[];
   };
   research?: {
     text?: PortableTextBlock[];
@@ -90,6 +92,7 @@ export interface CaseStudy {
   outcome?: {
     text?: PortableTextBlock[];
     results?: string[];
+    images?: SanityImage[];
   };
   learnings?: {
     title: string;

@@ -171,6 +171,12 @@ export default defineType({
           type: 'array',
           of: [{ type: 'string' }],
         },
+        {
+          name: 'images',
+          title: 'Supporting Images',
+          type: 'array',
+          of: [{ type: 'image', options: { hotspot: true } }],
+        },
       ],
     }),
     defineField({
@@ -231,6 +237,12 @@ export default defineType({
               ],
             },
           ],
+        },
+        {
+          name: 'images',
+          title: 'Supporting Images',
+          type: 'array',
+          of: [{ type: 'image', options: { hotspot: true } }],
         },
       ],
     }),
@@ -445,6 +457,12 @@ export default defineType({
           title: 'Results',
           type: 'array',
           of: [{ type: 'string' }],
+        },
+        {
+          name: 'images',
+          title: 'Supporting Images',
+          type: 'array',
+          of: [{ type: 'image', options: { hotspot: true } }],
         },
       ],
     }),
