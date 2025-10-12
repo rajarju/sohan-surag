@@ -55,7 +55,7 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
 
   const hasDesignProcessContent = () =>
     Boolean(
-      designProcess?.description?.length || designProcess?.phases?.length
+      designProcess?.description?.length || designProcess?.images?.length
     );
 
   const hasResearchContent = () =>
@@ -364,45 +364,6 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                 {designProcess.description && (
                   <div className="text-lg text-white/80 leading-relaxed mb-8">
                     <PortableText value={designProcess.description} />
-                  </div>
-                )}
-
-                {designProcess.phases && designProcess.phases.length > 0 && (
-                  <div className="space-y-6">
-                    <div className="flex flex-wrap gap-4 mb-8">
-                      {designProcess.phases.map((phase, i) => (
-                        <div
-                          key={i}
-                          className="flex items-center justify-center w-32 h-32 rounded-full bg-gradient-to-br from-[#4A9FFF] to-[#8B5CF6] text-white font-medium text-center p-4"
-                        >
-                          {phase.name}
-                        </div>
-                      ))}
-                    </div>
-
-                    {designProcess.phases.map((phase, i) => (
-                      <div key={i} className="bg-white/5 rounded-2xl p-6">
-                        <h3 className="text-2xl font-medium text-white mb-3">{phase.name}</h3>
-                        {phase.description && (
-                          <p className="text-white/70 mb-3">{phase.description}</p>
-                        )}
-                        {phase.methods && phase.methods.length > 0 && (
-                          <div>
-                            <div className="text-sm text-white/50 mb-2">Methods:</div>
-                            <div className="flex flex-wrap gap-2">
-                              {phase.methods.map((method, j) => (
-                                <span
-                                  key={j}
-                                  className="text-sm px-3 py-1 bg-white/10 rounded-full text-white/80"
-                                >
-                                  {method}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    ))}
                   </div>
                 )}
 

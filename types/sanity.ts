@@ -45,11 +45,6 @@ export interface CaseStudy {
   };
   designProcess?: {
     description?: PortableTextBlock[];
-    phases?: {
-      name: string;
-      description?: string;
-      methods?: string[];
-    }[];
     images?: SanityImage[];
   };
   research?: {

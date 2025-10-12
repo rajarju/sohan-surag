@@ -210,35 +210,6 @@ export default defineType({
           of: [{ type: 'block' }],
         },
         {
-          name: 'phases',
-          title: 'Process Phases',
-          type: 'array',
-          of: [
-            {
-              type: 'object',
-              fields: [
-                {
-                  name: 'name',
-                  title: 'Phase Name',
-                  type: 'string',
-                  description: 'e.g., "Discovery", "Define", "Ideation"',
-                },
-                {
-                  name: 'description',
-                  title: 'Description',
-                  type: 'text',
-                },
-                {
-                  name: 'methods',
-                  title: 'Methods Used',
-                  type: 'array',
-                  of: [{ type: 'string' }],
-                },
-              ],
-            },
-          ],
-        },
-        {
           name: 'images',
           title: 'Supporting Images',
           type: 'array',
