@@ -11,9 +11,17 @@ interface ContactProps {
 export default function Contact({ heading, email }: ContactProps) {
   return (
     <section id="contact" className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 md:px-8 lg:px-10 relative overflow-hidden">
-      {/* Background Graphics */}
-      <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 md:w-96 md:h-96 bg-gradient-to-tr from-white/5 to-transparent rounded-full blur-3xl" />
+      {/* Planet Horizon Effect */}
+      <div className="absolute bottom-0 left-0 right-0 h-64 overflow-hidden pointer-events-none">
+        <div
+          className="absolute left-1/2 w-[250vw] h-[250vw] sm:w-[200vw] sm:h-[200vw] rounded-full bg-black"
+          style={{
+            top: '70%',
+            transform: 'translateX(-50%)',
+            boxShadow: '0 -40px 120px 40px rgba(59, 130, 246, 0.2), 0 -15px 60px 10px rgba(59, 130, 246, 0.3), 0 -2px 10px 0px rgba(200, 220, 255, 0.5)'
+          }}
+        />
+      </div>
 
       <div className="max-w-[1400px] mx-auto relative z-10">
         <motion.div
