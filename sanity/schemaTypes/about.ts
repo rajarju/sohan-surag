@@ -247,6 +247,13 @@ export default defineType({
       description: 'Paragraphs describing hobbies and interests',
       of: [{ type: 'text', rows: 4 }],
     }),
+    defineField({
+      name: 'outsideWorkImages',
+      title: 'Outside Work Images',
+      type: 'array',
+      description: 'Images showcasing hobbies and interests (displayed as carousel)',
+      of: [{ type: 'image', options: { hotspot: true } }],
+    }),
   ],
   preview: {
     select: {

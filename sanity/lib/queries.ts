@@ -28,7 +28,8 @@ export const aboutQuery = groq`*[_type == "about"][0]{
   recognition,
   goodreadsUrl,
   favoriteQuote,
-  hobbies
+  hobbies,
+  outsideWorkImages
 }`
 
 // Site Settings

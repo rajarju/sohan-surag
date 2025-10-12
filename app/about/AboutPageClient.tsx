@@ -7,6 +7,7 @@ import { urlFor } from '@/sanity/lib/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Contact from '@/components/Contact';
+import ImageCarousel from '@/components/ImageCarousel';
 import { About } from '@/types/sanity';
 import { useState, useEffect } from 'react';
 
@@ -203,7 +204,7 @@ export default function AboutPageClient({ about, siteSettings }: AboutPageClient
                     Recognition
                   </button>
                 )}
-                {((about?.goodreadsUrl) || (about?.favoriteQuote) || (about?.hobbies && about.hobbies.length > 0)) && (
+                {((about?.goodreadsUrl) || (about?.favoriteQuote) || (about?.hobbies && about.hobbies.length > 0) || (about?.outsideWorkImages && about.outsideWorkImages.length > 0)) && (
                   <button
                     onClick={() => scrollToSection('outside-work')}
                     className={`block text-left transition-colors ${
@@ -351,7 +352,7 @@ export default function AboutPageClient({ about, siteSettings }: AboutPageClient
               )}
 
               {/* Outside Work Section */}
-              {((about?.goodreadsUrl) || (about?.favoriteQuote) || (about?.hobbies && about.hobbies.length > 0)) && (
+              {((about?.goodreadsUrl) || (about?.favoriteQuote) || (about?.hobbies && about.hobbies.length > 0) || (about?.outsideWorkImages && about.outsideWorkImages.length > 0)) && (
                 <motion.section
                   id="outside-work"
                   initial={{ opacity: 0, y: 20 }}
@@ -396,6 +397,13 @@ export default function AboutPageClient({ about, siteSettings }: AboutPageClient
                         {hobby}
                       </p>
                     ))}
+                  </div>
+                )}
+
+                {/* Images Carousel */}
+                {about?.outsideWorkImages && about.outsideWorkImages.length > 0 && (
+                  <div className="mt-8">
+                    <ImageCarousel images={about.outsideWorkImages} altPrefix="Outside Work" />
                   </div>
                 )}
                 </motion.section>

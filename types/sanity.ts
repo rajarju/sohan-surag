@@ -169,4 +169,5 @@ export interface About {
   goodreadsUrl?: string;
   favoriteQuote?: string;
   hobbies?: string[];
+  outsideWorkImages?: SanityImage[];
 }
