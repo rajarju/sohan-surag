@@ -252,7 +252,7 @@ export default defineType({
       title: 'Outside Work Images',
       type: 'array',
       description: 'Images showcasing hobbies and interests (displayed as carousel)',
-      of: [{ type: 'image', options: { hotspot: true } }],
+      of: [{ type: 'image', options: { hotspot: false } }],
     }),
   ],
   preview: {

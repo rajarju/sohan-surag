@@ -35,9 +35,9 @@ export default function ImageCarousel({ images, altPrefix = 'Image' }: ImageCaro
   return (
     <div className="relative w-full">
       {/* Main Image Display */}
-      <div className="relative w-full aspect-video bg-white/5 rounded-2xl overflow-hidden">
+      <div className="relative w-full min-h-[400px] bg-white/5 rounded-2xl overflow-hidden flex items-center justify-center">
         <Image
-          src={urlFor(images[currentIndex]).width(1200).height(675).url()}
+          src={urlFor(images[currentIndex]).width(1200).url()}
           alt={`${altPrefix} ${currentIndex + 1}`}
           fill
           className="object-contain"
