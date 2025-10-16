@@ -92,16 +92,13 @@ export default function Hero({
                   <span className="text-sm">↗</span>
                 </Link>
               )}
-              <button
-                onClick={() => {
-                  const element = document.getElementById('contact');
-                  element?.scrollIntoView({ behavior: 'smooth' });
-                }}
+              <Link
+                href="/about"
                 className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 border-2 border-white/20 text-white rounded-full hover:border-white/40 hover:bg-white/5 transition-all text-base md:text-lg font-medium"
               >
-                <span>Get in touch</span>
+                <span>About</span>
                 <span className="text-sm">→</span>
-              </button>
+              </Link>
             </motion.div>
           </motion.div>
 
