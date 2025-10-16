@@ -7,9 +7,7 @@ import { unstable_ViewTransition as ViewTransition } from 'react';
 import { urlFor } from '@/sanity/lib/image';
 import { CaseStudy } from '@/types/sanity';
 
-interface CaseStudyCardProps extends CaseStudy {}
-
-function CaseStudyCard({ title, description, tags, metrics, thumbnailImage, slug }: CaseStudyCardProps) {
+function CaseStudyCard({ title, description, tags, metrics, thumbnailImage, slug }: CaseStudy) {
   const imageUrl = thumbnailImage
     ? urlFor(thumbnailImage).width(800).height(600).url()
     : 'https://picsum.photos/800/600?random=20';
