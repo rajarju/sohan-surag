@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-black">
+    <html lang="en" className="bg-black" style={{ viewTransitionName: 'root' }}>
       <body
         className={`${dmSans.variable} antialiased bg-black text-white`}
       >

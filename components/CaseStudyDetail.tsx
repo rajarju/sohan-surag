@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
+import { unstable_ViewTransition as ViewTransition } from 'react';
 import { urlFor } from '@/sanity/lib/image';
 import { PortableText } from '@portabletext/react';
 import { CaseStudy } from '@/types/sanity';
@@ -32,6 +32,7 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
     outcome,
     learnings,
     impact,
+    slug,
   } = caseStudy;
 
   const heroImageUrl = heroImage
@@ -112,7 +113,7 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
       <div className="max-w-[1400px] mx-auto">
         {/* Back Button */}
         <Link
-          href="/"
+          href="/#case-studies"
           className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-12"
         >
           <FaArrowLeft />
@@ -126,12 +127,7 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
           {/* Main Content */}
           <div className="flex-1 max-w-[900px]">
             {/* Hero */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-8 mb-16"
-            >
+            <div className="space-y-8 mb-16">
               {tags && tags.length > 0 && (
                 <div className="flex flex-wrap gap-3 mb-6">
                   {tags.map((tag: string, index: number) => (
@@ -146,22 +142,26 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
               )}
 
               <div className="mb-2">
-                <span className="text-[#4A9FFF] text-lg font-medium">{title}</span>
+                <ViewTransition name={`case-study-title-${slug.current}`}>
+                  <span className="text-[#4A9FFF] text-lg font-medium">{title}</span>
+                </ViewTransition>
               </div>
               <h1 className="text-5xl md:text-6xl font-normal text-white leading-tight">
                 {description}
               </h1>
 
               {/* Hero Image */}
-              <div className="relative aspect-video rounded-2xl overflow-hidden bg-white/5">
-                <Image
-                  src={heroImageUrl}
-                  alt={title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
+              <ViewTransition name={`case-study-image-${slug.current}`}>
+                <div className="relative aspect-video rounded-2xl overflow-hidden bg-white/5">
+                  <Image
+                    src={heroImageUrl}
+                    alt={title}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </ViewTransition>
 
               {/* Project Info */}
               {projectInfo && (
@@ -215,18 +215,11 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                   )}
                 </div>
               )}
-            </motion.div>
+            </div>
 
             {/* Overview */}
             {overview && (
-              <motion.section
-                id="overview"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="mb-20 scroll-mt-32"
-              >
+              <section id="overview" className="mb-20 scroll-mt-32">
                 <h2 className="text-4xl font-normal text-[#4A9FFF] mb-8">Overview</h2>
 
                 {/* Handle legacy format (array of PortableTextBlock) */}
@@ -323,17 +316,13 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                 )}
                   </>
                 )}
-              </motion.section>
+              </section>
             )}
 
             {/* KPI */}
             {metrics && metrics.length > 0 && (
-              <motion.section
+              <section
                 id="kpi"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
                 className="mb-20 scroll-mt-32"
               >
                 <h2 className="text-4xl font-normal text-[#4A9FFF] mb-8">KPI</h2>
@@ -347,17 +336,13 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                     </div>
                   ))}
                 </div>
-              </motion.section>
+              </section>
             )}
 
             {/* Design Process */}
             {designProcess && (
-              <motion.section
+              <section
                 id="design-process"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
                 className="mb-20 scroll-mt-32"
               >
                 <h2 className="text-4xl font-normal text-[#4A9FFF] mb-6">Design Process</h2>
@@ -373,17 +358,13 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                     <ImageCarousel images={designProcess.images} altPrefix="Design Process" />
                   </div>
                 )}
-              </motion.section>
+              </section>
             )}
 
             {/* Research & Discovery */}
             {research && (
-              <motion.section
+              <section
                 id="research"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
                 className="mb-20 scroll-mt-32"
               >
                 <h2 className="text-4xl font-normal text-[#4A9FFF] mb-6">
@@ -442,17 +423,13 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                     <ImageCarousel images={research.images} altPrefix="Research" />
                   </div>
                 )}
-              </motion.section>
+              </section>
             )}
 
             {/* Concept & Ideation */}
             {conceptIdeation && (
-              <motion.section
+              <section
                 id="concept"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
                 className="mb-20 scroll-mt-32"
               >
                 <h2 className="text-4xl font-normal text-[#4A9FFF] mb-6">
@@ -508,17 +485,13 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                     <ImageCarousel images={conceptIdeation.images} altPrefix="Concept" />
                   </div>
                 )}
-              </motion.section>
+              </section>
             )}
 
             {/* Solution */}
             {solution && (
-              <motion.section
+              <section
                 id="solution"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
                 className="mb-20 scroll-mt-32"
               >
                 <h2 className="text-4xl font-normal text-[#4A9FFF] mb-6">Solution</h2>
@@ -550,17 +523,13 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                     ))}
                   </div>
                 )}
-              </motion.section>
+              </section>
             )}
 
             {/* Handoff */}
             {handoff && (
-              <motion.section
+              <section
                 id="handoff"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
                 className="mb-20 scroll-mt-32"
               >
                 <h2 className="text-4xl font-normal text-[#4A9FFF] mb-6">Handoff</h2>
@@ -586,17 +555,13 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                     <ImageCarousel images={handoff.images} altPrefix="Handoff" />
                   </div>
                 )}
-              </motion.section>
+              </section>
             )}
 
             {/* Outcome */}
             {outcome && (
-              <motion.section
+              <section
                 id="outcome"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
                 className="mb-20 scroll-mt-32"
               >
                 <h2 className="text-4xl font-normal text-[#4A9FFF] mb-6">Outcome</h2>
@@ -623,17 +588,13 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                     <ImageCarousel images={outcome.images} altPrefix="Outcome" />
                   </div>
                 )}
-              </motion.section>
+              </section>
             )}
 
             {/* Learnings */}
             {learnings && learnings.length > 0 && (
-              <motion.section
+              <section
                 id="learnings"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
                 className="mb-20 scroll-mt-32"
               >
                 <h2 className="text-4xl font-normal text-[#4A9FFF] mb-6">Learnings</h2>
@@ -649,17 +610,13 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                     </div>
                   ))}
                 </div>
-              </motion.section>
+              </section>
             )}
 
             {/* Impact (Legacy) */}
             {impact && (
-              <motion.section
+              <section
                 id="impact"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
                 className="mb-20 scroll-mt-32"
               >
                 <h2 className="text-4xl font-normal text-[#4A9FFF] mb-6">Impact</h2>
@@ -677,16 +634,12 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                     <p className="text-white/60 mt-4">— {impact.testimonial.author}</p>
                   </div>
                 )}
-              </motion.section>
+              </section>
             )}
 
             {/* Challenge (if exists separately) */}
             {challenge?.text && (
-              <motion.section
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
+              <section
                 className="mb-20"
               >
                 <h2 className="text-4xl font-normal text-white mb-6">The Challenge</h2>
@@ -703,7 +656,7 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                     />
                   </div>
                 )}
-              </motion.section>
+              </section>
             )}
           </div>
         </div>
