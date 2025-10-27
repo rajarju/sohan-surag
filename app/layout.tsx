@@ -9,9 +9,30 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
 });
 
+// Get the base URL for metadata
+// Priority: Custom domain > Vercel URL > localhost
+const getBaseUrl = () => {
+  // Custom domain (production)
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+
+  // Vercel deployment URL
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  // Local development
+  return 'http://localhost:3000';
+};
+
+// Default OG metadata for root layout
+const defaultOGTitle = "Sohan Surag - Product Designer";
+const defaultOGDescription = "Product designer based in Berlin. Blending design & management to craft solutions that drive results.";
+
 export const metadata: Metadata = {
-  title: "Sohan Surag - Product Designer",
-  description: "Product designer based in Berlin. Blending design & management to craft solutions that drive results.",
+  title: defaultOGTitle,
+  description: defaultOGDescription,
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -21,6 +42,29 @@ export const metadata: Metadata = {
     apple: '/favicon/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
+  metadataBase: new URL(getBaseUrl()),
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: '/',
+    siteName: 'Sohan Surag',
+    title: defaultOGTitle,
+    description: defaultOGDescription,
+    images: [
+      {
+        url: `/og?title=${encodeURIComponent(defaultOGTitle)}&description=${encodeURIComponent(defaultOGDescription)}`,
+        width: 1200,
+        height: 630,
+        alt: defaultOGTitle,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: defaultOGTitle,
+    description: defaultOGDescription,
+    images: [`/og?title=${encodeURIComponent(defaultOGTitle)}&description=${encodeURIComponent(defaultOGDescription)}`],
+  },
 };
 
 export default function RootLayout({
