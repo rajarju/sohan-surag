@@ -9,6 +9,23 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
 });
 
+// Get the base URL for metadata
+// Priority: Custom domain > Vercel URL > localhost
+const getBaseUrl = () => {
+  // Custom domain (production)
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+
+  // Vercel deployment URL
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  // Local development
+  return 'http://localhost:3000';
+};
+
 export const metadata: Metadata = {
   title: "Sohan Surag - Product Designer",
   description: "Product designer based in Berlin. Blending design & management to craft solutions that drive results.",
@@ -21,7 +38,7 @@ export const metadata: Metadata = {
     apple: '/favicon/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(getBaseUrl()),
   openGraph: {
     type: 'website',
     locale: 'en_US',
