@@ -143,13 +143,14 @@ export async function GET(req: NextRequest) {
             height: '100%',
             width: '100%',
             display: 'flex',
+            flexDirection: 'column',
             backgroundColor: '#000',
             backgroundImage: 'radial-gradient(circle at 25px 25px, #1a1a1a 2%, transparent 0%), radial-gradient(circle at 75px 75px, #1a1a1a 2%, transparent 0%)',
             backgroundSize: '100px 100px',
             position: 'relative',
           }}
         >
-          {/* Gradient overlay for aurora effect */}
+          {/* Gradient overlay for aurora effect - absolute positioned */}
           <div
             style={{
               position: 'absolute',
@@ -166,6 +167,7 @@ export async function GET(req: NextRequest) {
           <div
             style={{
               display: 'flex',
+              flexDirection: 'row',
               width: '100%',
               height: '100%',
               padding: '80px',
@@ -180,7 +182,6 @@ export async function GET(req: NextRequest) {
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '24px',
                 maxWidth: '600px',
               }}
             >
@@ -190,6 +191,7 @@ export async function GET(req: NextRequest) {
                   fontSize: '40px',
                   color: 'rgba(255, 255, 255, 0.8)',
                   fontWeight: 400,
+                  marginBottom: '24px',
                 }}
               >
                 {greeting} {name}
@@ -202,6 +204,7 @@ export async function GET(req: NextRequest) {
                   fontWeight: 400,
                   color: '#fff',
                   lineHeight: 1.1,
+                  marginBottom: '36px',
                 }}
               >
                 {title}
@@ -214,7 +217,6 @@ export async function GET(req: NextRequest) {
                   height: '6px',
                   backgroundColor: '#4A9FFF',
                   borderRadius: '3px',
-                  marginTop: '12px',
                 }}
               />
             </div>
