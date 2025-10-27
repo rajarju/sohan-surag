@@ -10,6 +10,12 @@ export const runtime = 'edge';
 // Image URL builder for edge runtime
 const builder = createImageUrlBuilder({ projectId, dataset });
 
+// Cache control header for OG images
+// - max-age=0: Browsers always revalidate
+// - s-maxage=86400: CDN/edge caches for 24 hours (86400 seconds)
+// - stale-while-revalidate=2592000: CDN can serve stale content for 30 days while fetching fresh
+const cacheControlHeader = 'public, max-age=0, s-maxage=86400, stale-while-revalidate=2592000';
+
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
@@ -120,6 +126,9 @@ export async function GET(req: NextRequest) {
         {
           width: 1200,
           height: 630,
+          headers: {
+            'Cache-Control': cacheControlHeader,
+          },
         }
       );
     }
@@ -252,10 +261,18 @@ export async function GET(req: NextRequest) {
       {
         width: 1200,
         height: 630,
+        headers: {
+          'Cache-Control': cacheControlHeader,
+        },
       }
     );
   } catch (e: unknown) {
     console.error('Error generating OG image:', e);
-    return new Response('Failed to generate image', { status: 500 });
+    return new Response('Failed to generate image', {
+      status: 500,
+      headers: {
+        'Cache-Control': 'no-store',
+      },
+    });
   }
 }
