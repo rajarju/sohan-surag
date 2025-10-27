@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: 'website',
       images: [
         {
-          url: `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`,
+          url: `/og`,
           width: 1200,
           height: 630,
           alt: `${title} - Portfolio`,
@@ -44,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: 'summary_large_image',
       title: `${title} - Portfolio`,
       description: description,
-      images: [`/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`],
+      images: [`/og`],
     },
   };
 }
