@@ -22,28 +22,33 @@ import {
 export async function generateMetadata(): Promise<Metadata> {
   const hero = await getHero();
   const name = hero?.name || 'Sohan Surag';
-  const description = hero?.title || 'Product Designer based in Berlin';
+  const title = hero?.title || 'Product designer.';
+
+  // SEO-optimized metadata
+  const pageTitle = `I am ${name}`;
+  const ogTitle = `${name} - Product Designer & Design Leader`;
+  const ogDescription = `Experienced product designer based in Berlin, blending design expertise and management skills to craft user-centered solutions that drive business results.`;
 
   return {
-    title: `I am ${name}`,
-    description: description,
+    title: pageTitle,
+    description: ogDescription,
     openGraph: {
-      title: `I am ${name}`,
-      description: description,
+      title: ogTitle,
+      description: ogDescription,
       type: 'website',
       images: [
         {
           url: `/og`,
           width: 1200,
           height: 630,
-          alt: `I am ${name}`,
+          alt: ogTitle,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `I am ${name}`,
-      description: description,
+      title: ogTitle,
+      description: ogDescription,
       images: [`/og`],
     },
   };
