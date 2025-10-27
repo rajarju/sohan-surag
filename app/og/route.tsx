@@ -1,11 +1,20 @@
 import { ImageResponse } from '@vercel/og';
 import { NextRequest } from 'next/server';
-import { client } from '@/sanity/lib/client';
+import { createClient } from 'next-sanity';
 import { heroQuery } from '@/sanity/lib/queries';
 import createImageUrlBuilder from '@sanity/image-url';
-import { dataset, projectId } from '@/sanity/env';
+import { apiVersion, dataset, projectId } from '@/sanity/env';
 
 export const runtime = 'edge';
+
+// Edge-specific Sanity client with useCdn: false
+// This ensures fresh data for OG images, with caching handled by our Cache-Control headers
+const edgeClient = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: false, // Disable Sanity CDN to get fresh data; we control caching via Cache-Control
+});
 
 // Image URL builder for edge runtime
 const builder = createImageUrlBuilder({ projectId, dataset });
@@ -134,7 +143,7 @@ export async function GET(req: NextRequest) {
     }
 
     // For homepage, fetch hero data from Sanity
-    const hero = await client.fetch(heroQuery);
+    const hero = await edgeClient.fetch(heroQuery);
 
     const greeting = hero?.greeting || 'Hello';
     const name = hero?.name || 'Sohan Surag';
