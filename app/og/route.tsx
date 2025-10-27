@@ -194,7 +194,7 @@ export async function GET(req: NextRequest) {
                   marginBottom: '24px',
                 }}
               >
-                {greeting} {name}
+                {`${greeting} ${name}`}
               </div>
 
               {/* Title */}
@@ -222,7 +222,7 @@ export async function GET(req: NextRequest) {
             </div>
 
             {/* Right Column - Profile Image */}
-            {profileImageUrl && (
+            {profileImageUrl ? (
               <div
                 style={{
                   display: 'flex',
@@ -243,6 +243,8 @@ export async function GET(req: NextRequest) {
                   }}
                 />
               </div>
+            ) : (
+              <div style={{ display: 'flex', width: '380px' }} />
             )}
           </div>
         </div>
