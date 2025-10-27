@@ -21,6 +21,29 @@ export const metadata: Metadata = {
     apple: '/favicon/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: '/',
+    siteName: 'Sohan Surag',
+    title: 'Sohan Surag - Product Designer',
+    description: 'Product designer based in Berlin. Blending design & management to craft solutions that drive results.',
+    images: [
+      {
+        url: '/og?title=Sohan+Surag&description=Product+Designer',
+        width: 1200,
+        height: 630,
+        alt: 'Sohan Surag - Product Designer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sohan Surag - Product Designer',
+    description: 'Product designer based in Berlin. Blending design & management to craft solutions that drive results.',
+    images: ['/og?title=Sohan+Surag&description=Product+Designer'],
+  },
 };
 
 export default function RootLayout({
