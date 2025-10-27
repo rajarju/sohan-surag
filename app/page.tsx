@@ -21,14 +21,14 @@ import {
 
 export async function generateMetadata(): Promise<Metadata> {
   const hero = await getHero();
-  const title = hero?.name || 'Sohan Surag';
+  const name = hero?.name || 'Sohan Surag';
   const description = hero?.title || 'Product Designer based in Berlin';
 
   return {
-    title: `${title} - Portfolio`,
+    title: `I am ${name}`,
     description: description,
     openGraph: {
-      title: `${title} - Portfolio`,
+      title: `I am ${name}`,
       description: description,
       type: 'website',
       images: [
@@ -36,13 +36,13 @@ export async function generateMetadata(): Promise<Metadata> {
           url: `/og`,
           width: 1200,
           height: 630,
-          alt: `${title} - Portfolio`,
+          alt: `I am ${name}`,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} - Portfolio`,
+      title: `I am ${name}`,
       description: description,
       images: [`/og`],
     },
