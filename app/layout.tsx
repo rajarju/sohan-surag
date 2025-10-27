@@ -26,9 +26,13 @@ const getBaseUrl = () => {
   return 'http://localhost:3000';
 };
 
+// Default OG metadata for root layout
+const defaultOGTitle = "Sohan Surag - Product Designer";
+const defaultOGDescription = "Product designer based in Berlin. Blending design & management to craft solutions that drive results.";
+
 export const metadata: Metadata = {
-  title: "Sohan Surag - Product Designer",
-  description: "Product designer based in Berlin. Blending design & management to craft solutions that drive results.",
+  title: defaultOGTitle,
+  description: defaultOGDescription,
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -44,22 +48,22 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: '/',
     siteName: 'Sohan Surag',
-    title: 'Sohan Surag - Product Designer',
-    description: 'Product designer based in Berlin. Blending design & management to craft solutions that drive results.',
+    title: defaultOGTitle,
+    description: defaultOGDescription,
     images: [
       {
-        url: '/og',
+        url: `/og?title=${encodeURIComponent(defaultOGTitle)}&description=${encodeURIComponent(defaultOGDescription)}`,
         width: 1200,
         height: 630,
-        alt: 'Sohan Surag - Product Designer',
+        alt: defaultOGTitle,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sohan Surag - Product Designer',
-    description: 'Product designer based in Berlin. Blending design & management to craft solutions that drive results.',
-    images: ['/og'],
+    title: defaultOGTitle,
+    description: defaultOGDescription,
+    images: [`/og?title=${encodeURIComponent(defaultOGTitle)}&description=${encodeURIComponent(defaultOGDescription)}`],
   },
 };
 
