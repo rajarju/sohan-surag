@@ -21,29 +21,34 @@ import {
 
 export async function generateMetadata(): Promise<Metadata> {
   const hero = await getHero();
-  const title = hero?.name || 'Sohan Surag';
-  const description = hero?.title || 'Product Designer based in Berlin';
+  const name = hero?.name || 'Sohan Surag';
+  const title = hero?.title || 'Product designer.';
+
+  // SEO-optimized metadata
+  const pageTitle = `I am ${name}`;
+  const ogTitle = `${name} - Product Designer & Design Leader`;
+  const ogDescription = `Experienced product designer based in Berlin, blending design expertise and management skills to craft user-centered solutions that drive business results.`;
 
   return {
-    title: `${title} - Portfolio`,
-    description: description,
+    title: pageTitle,
+    description: ogDescription,
     openGraph: {
-      title: `${title} - Portfolio`,
-      description: description,
+      title: ogTitle,
+      description: ogDescription,
       type: 'website',
       images: [
         {
           url: `/og`,
           width: 1200,
           height: 630,
-          alt: `${title} - Portfolio`,
+          alt: ogTitle,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} - Portfolio`,
-      description: description,
+      title: ogTitle,
+      description: ogDescription,
       images: [`/og`],
     },
   };
