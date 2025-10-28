@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import AuroraBackground from "@/components/AuroraBackground";
+import { getSiteSettings } from "@/sanity/lib/fetch";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -26,46 +27,59 @@ const getBaseUrl = () => {
   return 'http://localhost:3000';
 };
 
-// Default OG metadata for root layout
-const defaultOGTitle = "Sohan Surag - Product Designer";
-const defaultOGDescription = "Product designer based in Berlin. Blending design & management to craft solutions that drive results.";
+// Default fallback values
+const defaultTitle = "Sohan Surag - Product Designer";
+const defaultDescription = "Product designer based in Berlin. Blending design & management to craft solutions that drive results.";
 
-export const metadata: Metadata = {
-  title: defaultOGTitle,
-  description: defaultOGDescription,
-  icons: {
-    icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: '/favicon/apple-touch-icon.png',
-  },
-  manifest: '/site.webmanifest',
-  metadataBase: new URL(getBaseUrl()),
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: '/',
-    siteName: 'Sohan Surag',
-    title: defaultOGTitle,
-    description: defaultOGDescription,
-    images: [
-      {
-        url: `/og?title=${encodeURIComponent(defaultOGTitle)}&description=${encodeURIComponent(defaultOGDescription)}`,
-        width: 1200,
-        height: 630,
-        alt: defaultOGTitle,
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: defaultOGTitle,
-    description: defaultOGDescription,
-    images: [`/og?title=${encodeURIComponent(defaultOGTitle)}&description=${encodeURIComponent(defaultOGDescription)}`],
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const siteSettings = await getSiteSettings();
+
+  const title = siteSettings?.seoTitle || defaultTitle;
+  const description = siteSettings?.seoDescription || defaultDescription;
+  const ogTitle = siteSettings?.ogTitle || siteSettings?.seoTitle || defaultTitle;
+  const ogDescription = siteSettings?.ogDescription || siteSettings?.seoDescription || defaultDescription;
+  const siteName = siteSettings?.name || 'Sohan Surag';
+
+  return {
+    title: {
+      default: title,
+      template: `%s | ${siteName}`,
+    },
+    description,
+    icons: {
+      icon: [
+        { url: '/favicon.ico' },
+        { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+        { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      ],
+      apple: '/favicon/apple-touch-icon.png',
+    },
+    manifest: '/site.webmanifest',
+    metadataBase: new URL(getBaseUrl()),
+    openGraph: {
+      type: 'website',
+      locale: 'en_US',
+      url: '/',
+      siteName,
+      title: ogTitle,
+      description: ogDescription,
+      images: [
+        {
+          url: `/og?title=${encodeURIComponent(ogTitle)}&description=${encodeURIComponent(ogDescription)}`,
+          width: 1200,
+          height: 630,
+          alt: ogTitle,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: ogTitle,
+      description: ogDescription,
+      images: [`/og?title=${encodeURIComponent(ogTitle)}&description=${encodeURIComponent(ogDescription)}`],
+    },
+  };
+}
 
 export default function RootLayout({
   children,

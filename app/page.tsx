@@ -20,22 +20,32 @@ import {
 } from '@/sanity/lib/fetch';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const hero = await getHero();
-  const name = hero?.name || 'Sohan Surag';
-  const title = hero?.title || 'Product designer.';
+  // Fetch both hero and siteSettings for metadata
+  const [hero, siteSettings] = await Promise.all([
+    getHero(),
+    getSiteSettings(),
+  ]);
 
-  // SEO-optimized metadata
-  const pageTitle = `I am ${name}`;
-  const ogTitle = `${name} - Product Designer & Design Leader`;
-  const ogDescription = `Experienced product designer based in Berlin, blending design expertise and management skills to craft user-centered solutions that drive business results.`;
+  // In the current Sanity structure, hero.title contains the actual name "Sohan Surag"
+  // and hero.name contains "I am" (part of the greeting display)
+  const name = hero?.title || siteSettings?.name || 'Sohan Surag';
+
+  // Use SEO fields from Sanity if available, otherwise compute defaults
+  const pageTitle = siteSettings?.seoTitle || `${name} - Product Designer`;
+  const pageDescription = siteSettings?.seoDescription ||
+    `Experienced product designer based in Berlin, blending design expertise and management skills to craft user-centered solutions that drive business results.`;
+
+  const ogTitle = siteSettings?.ogTitle || siteSettings?.seoTitle || `${name} - Product Designer & Design Leader`;
+  const ogDescription = siteSettings?.ogDescription || siteSettings?.seoDescription || pageDescription;
 
   return {
     title: pageTitle,
-    description: ogDescription,
+    description: pageDescription,
     openGraph: {
       title: ogTitle,
       description: ogDescription,
       type: 'website',
+      url: '/',
       images: [
         {
           url: `/og`,

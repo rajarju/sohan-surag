@@ -171,3 +171,28 @@ export interface About {
   hobbies?: string[];
   outsideWorkImages?: SanityImage[];
 }
+
+export interface SiteSettings {
+  title?: string;
+  description?: string;
+  email?: string;
+  name?: string;
+  blogUrl?: string;
+  socialLinks?: {
+    linkedin?: string;
+    twitter?: string;
+    github?: string;
+    dribbble?: string;
+    behance?: string;
+  };
+  contactCTA?: {
+    heading?: string;
+    subheading?: string;
+  };
+  // SEO Metadata
+  seoTitle?: string;
+  seoDescription?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: SanityImage;
+}

@@ -40,7 +40,12 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   name,
   blogUrl,
   socialLinks,
-  contactCTA
+  contactCTA,
+  seoTitle,
+  seoDescription,
+  ogTitle,
+  ogDescription,
+  ogImage
 }`
 
 // Case Studies (all)

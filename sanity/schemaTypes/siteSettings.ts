@@ -82,6 +82,45 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'seoTitle',
+      title: 'SEO Title',
+      type: 'string',
+      description: 'Page title for search engines and browser tabs (e.g., "Sohan Surag - Product Designer")',
+      validation: (Rule) => Rule.max(60).warning('Title should be under 60 characters for optimal SEO'),
+    }),
+    defineField({
+      name: 'seoDescription',
+      title: 'SEO Description',
+      type: 'text',
+      rows: 3,
+      description: 'Meta description for search engines (150-160 characters recommended)',
+      validation: (Rule) => Rule.max(160).warning('Description should be under 160 characters for optimal SEO'),
+    }),
+    defineField({
+      name: 'ogTitle',
+      title: 'Open Graph Title',
+      type: 'string',
+      description: 'Title shown when shared on social media (Facebook, LinkedIn, etc.). Leave empty to use SEO Title.',
+      validation: (Rule) => Rule.max(60),
+    }),
+    defineField({
+      name: 'ogDescription',
+      title: 'Open Graph Description',
+      type: 'text',
+      rows: 3,
+      description: 'Description shown when shared on social media. Leave empty to use SEO Description.',
+      validation: (Rule) => Rule.max(160),
+    }),
+    defineField({
+      name: 'ogImage',
+      title: 'Open Graph Image',
+      type: 'image',
+      description: 'Image shown when shared on social media (1200x630px recommended)',
+      options: {
+        hotspot: true,
+      },
+    }),
   ],
   preview: {
     select: {
