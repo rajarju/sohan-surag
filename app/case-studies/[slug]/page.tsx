@@ -11,6 +11,11 @@ interface Props {
 
 export async function generateStaticParams() {
   const caseStudies = await getCaseStudies();
+
+  if (!caseStudies || caseStudies.length === 0) {
+    return [];
+  }
+
   return caseStudies.map((study: { slug: { current: string } }) => ({
     slug: study.slug.current,
   }));

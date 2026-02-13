@@ -15,6 +15,8 @@ export default function CaseStudyNav({ sections }: CaseStudyNavProps) {
   const [activeSection, setActiveSection] = useState<string>('');
 
   useEffect(() => {
+    if (!sections || sections.length === 0) return;
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 200; // Offset for better UX
 
@@ -32,6 +34,10 @@ export default function CaseStudyNav({ sections }: CaseStudyNavProps) {
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [sections]);
+
+  if (!sections || sections.length === 0) {
+    return null;
+  }
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);

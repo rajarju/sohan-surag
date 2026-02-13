@@ -74,6 +74,10 @@ interface CaseStudiesProps {
 }
 
 export default function CaseStudies({ caseStudies }: CaseStudiesProps) {
+  if (!caseStudies || caseStudies.length === 0) {
+    return null;
+  }
+
   return (
     <section id="case-studies" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-10">
       <div className="max-w-[1400px] mx-auto">
