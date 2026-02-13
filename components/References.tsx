@@ -14,6 +14,10 @@ interface ReferencesProps {
 export default function References({ testimonials }: ReferencesProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  if (!testimonials || testimonials.length === 0) {
+    return null;
+  }
+
   const next = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };

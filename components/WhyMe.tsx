@@ -14,6 +14,10 @@ interface WhyMeProps {
 }
 
 export default function WhyMe({ points }: WhyMeProps) {
+  if (!points || points.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-10">
       <div className="max-w-[1400px] mx-auto">
