@@ -37,26 +37,30 @@ function CaseStudyCard({ title, description, tags, metrics, thumbnailImage, slug
           </div>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 md:gap-3">
-            {tags.map((tag, index) => (
-              <span
-                key={index}
-                className="px-3 py-1.5 md:px-4 md:py-2 bg-white/10 rounded-full text-xs md:text-sm text-white/80"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          {tags && tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 md:gap-3">
+              {tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="px-3 py-1.5 md:px-4 md:py-2 bg-white/10 rounded-full text-xs md:text-sm text-white/80"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
 
           {/* Metrics */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 pt-4 border-t border-white/10">
-            {metrics.map((metric, index) => (
-              <div key={index}>
-                <div className="text-xl md:text-2xl font-medium text-white mb-1">{metric.value}</div>
-                <div className="text-xs md:text-sm text-white/60">{metric.label}</div>
-              </div>
-            ))}
-          </div>
+          {metrics && metrics.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 pt-4 border-t border-white/10">
+              {metrics.map((metric, index) => (
+                <div key={index}>
+                  <div className="text-xl md:text-2xl font-medium text-white mb-1">{metric.value}</div>
+                  <div className="text-xs md:text-sm text-white/60">{metric.label}</div>
+                </div>
+              ))}
+            </div>
+          )}
 
           {/* CTA */}
           <div className="flex items-center gap-2 text-sm md:text-base text-white group-hover:gap-4 transition-all">
